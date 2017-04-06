@@ -6,34 +6,7 @@
 <body>
 <?php
 	if (fromUserReg($_POST)) {
-		$username = $_POST["Username"];
-		$password = $_POST["Password"];
-		$fName = $_POST["Fname"];
-		$mName = $_POST["Mname"];
-		$lName = $_POST["Lname"];
-		$dob = $_POST["year"]."-".$_POST["month"]."-".$_POST["day"];
-		$gender = $_POST["Gender"];
-		$isManager = "False";
-
-		/* TESTLINK IS SPECIFIC TO IP ADDRESS I'M RUNNING IN LIBRARY
-		   AND DATABASE ON MY MACHINE; CHANGE FOR LATER ACCESS */
-		$link = mysqli_connect("10.20.4.126", "cs405team", 
-                                       "2017CS405Project", "movie_db");
-		if (!$link) {
-			echo "Connection failed: " . mysqli_connect_error();
-			exit;
-		}
-
-		// construct string to insert into USERS tables
-		$insertUserString = "INSERT INTO USERS(username, fname, mname,"
-                                   ."lname, dob, gender, _manager, password)"
-				   ." VALUES ('".$username."', '".$fName."', '"
-				   .$mName."', '".$lName."', '".$dob."', '"
-				   .$gender."', '".$isManager."', '".$password
-				   ."');";
-
-		echo $insertUserString;
-		$link->close();
+		registerUser($_POST);
 	}
 	elseif (fromHome($_POST)) {
 		echo "User login from main page.";
@@ -87,8 +60,36 @@ function fromUserReg($postVars) {
 	return $varsSet;
 }
 
-function registerUser() {
+function registerUser($postVars) {
 	// Do the things to create a new user in database
+	$username = $postVars["Username"];
+	$password = $postVars["Password"];
+	$fName = $postVars["Fname"];
+	$mName = $postVars["Mname"];
+	$lName = $postVars["Lname"];
+	$dob = $postVars["year"]."-".$_POST["month"]."-".$_POST["day"];
+	$gender = $postVars["Gender"];
+	$isManager = "False";
+
+	/* TESTLINK IS SPECIFIC TO IP ADDRESS I'M RUNNING IN LIBRARY
+	   AND DATABASE ON MY MACHINE; CHANGE FOR LATER ACCESS */
+	$link = mysqli_connect("10.20.4.126", "cs405team",
+	                       "2017CS405Project", "movie_db");
+	if (!$link) {
+		echo "Connection failed: " . mysqli_connect_error();
+		exit;
+	}
+
+	// construct string to insert into USERS tables
+	$insertUserString = "INSERT INTO USERS(username, fname, mname,"
+			   ."lname, dob, gender, _manager, password)"
+			   ." VALUES ('".$username."', '".$fName."', '"
+			   .$mName."', '".$lName."', '".$dob."', '"
+			   .$gender."', '".$isManager."', '".$password
+			   ."');";
+
+	echo $insertUserString;
+	$link->close();
 }
 // ----------------------------------------------------------------------------
 ?>
