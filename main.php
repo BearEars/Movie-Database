@@ -5,18 +5,41 @@
 
 <body>
 <?php
+	$link;
 	if (fromUserReg($_POST)) {
-		registerUser($_POST);
+		$link = establishLink();
+		registerUser($_POST, $link);
+		echo "User successfully registered.";
 	}
 	elseif (fromHome($_POST)) {
-		echo "User login from main page.";
+		$link = establishLink();
+		login($_POST, $link);
+		echo "User successfully logged in.";
 	}
 	if (!fromUserReg($_POST) && !fromHome($_POST)) {
 		// redirect user to login page if not signed in
 		header("Location: /~twecto2/CS405/Movie-Database/home.html");
 		exit;
 	}
+	$link->close();
 
+// ------------------------ FUNCTIONS -----------------------------------------
+function establishLink()
+{
+	// create link to MySQL database
+	/* Connects to database hosted by mysql.cs.uky.edu with username
+	   equal to linkblue account; cannot rename database or add
+	   users to MySQL this way, so connection will have to be established 
+           this way for all users, and authentication will occur within db
+	   for each user */
+        $link = mysqli_connect("mysql.cs.uky.edu", "twecto2",
+                               "2017CS405Project", "twecto2");
+        if (!$link) {
+                echo "Connection failed: " . mysqli_connect_error();
+                exit;
+        }
+	return $link;
+}
 // ------------------ USER LOGIN FROM MAIN.HTML -------------------------------
 function fromHome($postVars) {
 	/* Function checks if post variables from home.html are set;
@@ -29,8 +52,23 @@ function fromHome($postVars) {
 	return $varsSet;
 }
 
-function login() {
+function login($postVars, $link) {
 	// log an existing user in; check username/password combo
+	$username = $postVars["Username"];
+	$password = $postVars["Password"];
+
+	// construct query string for password
+	$passQueryString = "SELECT password FROM USERS WHERE username = '"
+			.$username."';";
+
+	// get result from database and store in an associative array
+	$passResult = $link->query($passQueryString);
+	$passRow = mysqli_fetch_assoc($passResult);
+
+	// check user entered password against the queried result
+	if ($password != $passRow["password"]) {
+		exit("Access denied: Password could not be verified");
+	}
 }
 // ----------------------------------------------------------------------------
 
@@ -60,7 +98,7 @@ function fromUserReg($postVars) {
 	return $varsSet;
 }
 
-function registerUser($postVars) {
+function registerUser($postVars, $link) {
 	// Do the things to create a new user in database
 	$username = $postVars["Username"];
 	$password = $postVars["Password"];
@@ -71,23 +109,6 @@ function registerUser($postVars) {
 	$gender = $postVars["Gender"];
 	$isManager = 0;
 
-	/* TESTLINK IS SPECIFIC TO IP ADDRESS I'M RUNNING IN LIBRARY
-	   AND DATABASE ON MY MACHINE; CHANGE FOR LATER ACCESS */
-	$link = mysqli_connect("10.20.4.126", "root",
-	                       "2017CS405Project", "movie_db");
-	if (!$link) {
-		echo "Connection failed: " . mysqli_connect_error();
-		exit;
-	}
-
-	// construct string to create database user; I think we should create
-	// database users for each user so everyone isn't running as root...
-	$createUserString = "CREATE USER '".$username."'@'%' IDENTIFIED BY '"
-			   .$password."';";
-
-	$grantPrivs = "GRANT ALL PRIVELEGES ON movie_db.* TO '".$username
-		     ."'@'%';";
-
 	// construct string to insert into USERS tables
 	$insertUserString = "INSERT INTO USERS(username, fname, mname,"
 			   ."lname, dob, gender, _manager, password)"
@@ -95,15 +116,9 @@ function registerUser($postVars) {
 			   .$mName."', '".$lName."', '".$dob."', '"
 			   .$gender."', '".$isManager."', '".$password
 			   ."');";
-	var_dump($link);
-	echo "<br>";
-	echo $createUserString."<br>";
-	echo $grantPrivs."<br>";
-	echo $insertUserString;
-	$link->query($createUserString);
-	$link->query($grantPrivs);
+
+	// insert user into table
 	$link->query($insertUserString);
-	$link->close();
 }
 // ----------------------------------------------------------------------------
 ?>
