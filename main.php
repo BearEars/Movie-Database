@@ -6,21 +6,26 @@
 <body>
 <?php
 	$link;
+	$username;
 	if (fromUserReg($_POST)) {
 		$link = establishLink();
 		registerUser($_POST, $link);
-		echo "User successfully registered.";
+		$username = $_POST["Username"];
 	}
 	elseif (fromHome($_POST)) {
 		$link = establishLink();
 		login($_POST, $link);
-		echo "User successfully logged in.";
+		$username = $_POST["Username"];
 	}
 	if (!fromUserReg($_POST) && !fromHome($_POST)) {
 		// redirect user to login page if not signed in
 		header("Location: /~twecto2/CS405/Movie-Database/home.html");
 		exit;
 	}
+	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."</p>";
+	echo "\t<h2>Search for Movies:</h2>";
+	echo "\t<form action=\"search.php\" method=\"GET\">";
+	echo "\t</form>";
 	$link->close();
 
 // ------------------------ FUNCTIONS -----------------------------------------
