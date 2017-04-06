@@ -7,17 +7,25 @@
 <?php
 	$link;
 	$username;
+	session_start(); // I think this will let users stay logged in
+
 	if (fromUserReg($_POST)) {
 		$link = establishLink();
 		registerUser($_POST, $link);
 		$username = $_POST["Username"];
+		$_SESSION["username"] = $username;
 	}
 	elseif (fromHome($_POST)) {
 		$link = establishLink();
 		login($_POST, $link);
 		$username = $_POST["Username"];
+		$_SESSION["username"] = $username;
 	}
-	if (!fromUserReg($_POST) && !fromHome($_POST)) {
+	elseif (isset($_SESSION["username"])) {
+		$username = $_SESSION["username"];
+	}
+	if (!fromUserReg($_POST) && !fromHome($_POST) 
+			         && !isset($_SESSION["username"])) {
 		// redirect user to login page if not signed in
 		header("Location: /~twecto2/CS405/Movie-Database/home.html");
 		exit;
@@ -26,6 +34,7 @@
 	echo "\t<h2>Search for Movies:</h2>";
 	echo "\t<form action=\"search.php\" method=\"GET\">";
 	echo "\t</form>";
+	unset($_SESSION["username"]);
 	$link->close();
 
 // ------------------------ FUNCTIONS -----------------------------------------
