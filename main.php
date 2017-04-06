@@ -6,13 +6,27 @@
 <body>
 <?php
 	if (fromUserReg($_POST)) {
-		echo "User registration form filled out.";
+		echo "User registration form filled out.<br>";
+
+		/* TESTLINK IS SPECIFIC TO IP ADDRESS I'M RUNNING IN LIBRARY
+		   AND DATABASE ON MY MACHINE; CHANGE FOR LATER ACCESS */
+		$testlink = mysqli_connect("10.20.4.126", "cs405team", 
+                                           "2017CS405Project", "movie_db");
+		if (!$testlink) {
+			echo "Connection failed: " . mysqli_connect_error();
+			exit;
+		}
+		
+		echo "Successfully connected to MySQL database!<br>";
+		var_dump($testlink);
 	}
 	elseif (fromHome($_POST)) {
 		echo "User login from main page.";
 	}
 	if (!fromUserReg($_POST) && !fromHome($_POST)) {
-		exit("<h1>Error: access denied</h1>");
+		// redirect user to login page if not signed in
+		header("Location: /~twecto2/CS405/Movie-Database/home.html");
+		exit;
 	}
 
 // ------------------ USER LOGIN FROM MAIN.HTML -------------------------------
