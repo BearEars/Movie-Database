@@ -11,8 +11,8 @@
 	elseif (fromHome($_POST)) {
 		echo "User login from main page.";
 	}
-	else {
-		echo "<h1>Access denied.</h1>";
+	if (!fromUserReg($_POST) && !fromHome($_POST)) {
+		exit("<h1>Error: access denied</h1>");
 	}
 
 // ------------------ USER LOGIN FROM MAIN.HTML -------------------------------
