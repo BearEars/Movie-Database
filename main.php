@@ -69,16 +69,24 @@ function registerUser($postVars) {
 	$lName = $postVars["Lname"];
 	$dob = $postVars["year"]."-".$_POST["month"]."-".$_POST["day"];
 	$gender = $postVars["Gender"];
-	$isManager = "False";
+	$isManager = 0;
 
 	/* TESTLINK IS SPECIFIC TO IP ADDRESS I'M RUNNING IN LIBRARY
 	   AND DATABASE ON MY MACHINE; CHANGE FOR LATER ACCESS */
-	$link = mysqli_connect("10.20.4.126", "cs405team",
+	$link = mysqli_connect("10.20.4.126", "root",
 	                       "2017CS405Project", "movie_db");
 	if (!$link) {
 		echo "Connection failed: " . mysqli_connect_error();
 		exit;
 	}
+
+	// construct string to create database user; I think we should create
+	// database users for each user so everyone isn't running as root...
+	$createUserString = "CREATE USER '".$username."'@'%' IDENTIFIED BY '"
+			   .$password."';";
+
+	$grantPrivs = "GRANT ALL PRIVELEGES ON movie_db.* TO '".$username
+		     ."'@'%';";
 
 	// construct string to insert into USERS tables
 	$insertUserString = "INSERT INTO USERS(username, fname, mname,"
@@ -87,8 +95,14 @@ function registerUser($postVars) {
 			   .$mName."', '".$lName."', '".$dob."', '"
 			   .$gender."', '".$isManager."', '".$password
 			   ."');";
-
+	var_dump($link);
+	echo "<br>";
+	echo $createUserString."<br>";
+	echo $grantPrivs."<br>";
 	echo $insertUserString;
+	$link->query($createUserString);
+	$link->query($grantPrivs);
+	$link->query($insertUserString);
 	$link->close();
 }
 // ----------------------------------------------------------------------------
