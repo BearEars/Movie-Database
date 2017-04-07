@@ -1,0 +1,32 @@
+body {
+	font-family: Verdana, sans-serif;
+	background-color: #383838;
+	text-align: center;
+}
+
+h3 {
+	color: white;
+	background-color: darkslategrey;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom-style: solid;
+	border-bottom-color: darkslateblue;
+	border-bottom-width: 5px;
+}
+
+#padding {
+	padding-bottom: 25px;
+}
+
+#form {
+	margin: auto;
+	text-align: left;
+	padding-left: 10px;
+	padding-top: 10px;
+	background-color: lightslategrey;
+	width: 500px;
+	border-style: solid;
+	border-width: 5px;
+	border-color: darkslateblue;
+	border-radius: 5px;
+}
