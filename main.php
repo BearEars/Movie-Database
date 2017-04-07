@@ -30,11 +30,17 @@
 		header("Location: /~twecto2/CS405/Movie-Database/home.html");
 		exit;
 	}
-	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."</p>";
+	
+	// display username at top of page with a log out link
+	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
+	echo "\t<a href=\"logout.php\">Log Out</a></p>";
+
+	// form for searching for movies
 	echo "\t<h2>Search for Movies:</h2>";
 	echo "\t<form action=\"search.php\" method=\"GET\">";
+	// <----   FILL IN FORM HERE   ---->
 	echo "\t</form>";
-	unset($_SESSION["username"]);
+
 	$link->close();
 
 // ------------------------ FUNCTIONS -----------------------------------------
