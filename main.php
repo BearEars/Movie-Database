@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Main Page</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body>
@@ -32,14 +33,21 @@
 	}
 	
 	// display username at top of page with a log out link
+	echo "<div id=\"top\">";
 	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
 	echo "\t<a href=\"logout.php\">Log Out</a></p>";
-
+	echo "</div>\n";
+	echo "<div id=\"padding\"></div>";
 	// form for searching for movies
-	echo "\t<h2>Search for Movies:</h2>";
-	echo "\t<form action=\"search.php\" method=\"GET\">";
+	echo "<div id=\"searchBox\">";
+	echo "\t<h2>Search for Movies:</h2>\n";
+	echo "\t<form action=\"search.php\" method=\"GET\">\n";
 	// <----   FILL IN FORM HERE   ---->
+	echo "\t\t<input type=\"text\" name=\"search\" size=\"50\"
+	      class=\"search\">\n";
+	echo "\t\t<input type=\"submit\" value=\"Search\" class=\"search\">\n";
 	echo "\t</form>";
+	echo "</div>";
 
 	$link->close();
 
