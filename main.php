@@ -43,6 +43,13 @@
 	echo "\t<h2>Search for Movies:</h2>\n";
 	echo "\t<form action=\"search.php\" method=\"GET\">\n";
 	// <----   FILL IN FORM HERE   ---->
+	echo "\t\t<select name=\"match\" class=\"search\">\n";
+	echo "\t\t\t<option value=\"nothing\"></option>\n";
+	echo "\t\t\t<option value=\"title\">Title</option>\n";
+	echo "\t\t\t<option value=\"genre\">Genre</option>\n";
+	echo "\t\t\t<option value=\"director\">Director</option>\n";
+	echo "\t\t\t<option value=\"actor\">Actor</option>\n";
+	echo "\t\t</select>\n";
 	echo "\t\t<input type=\"text\" name=\"search\" size=\"50\"
 	      class=\"search\">\n";
 	echo "\t\t<input type=\"submit\" value=\"Search\" class=\"search\">\n";
