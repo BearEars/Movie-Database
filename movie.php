@@ -20,6 +20,18 @@
 	$release = $fromMovieTable["release_date"];
 	$duration = $fromMovieTable["duration"];
 
+	$fromLanguageTable = getFromLanguageTable($link, $movieId);
+	$fromGenreTable = getFromGenreTable($link, $movieId);
+	$fromTagTable = getFromTagTable($link, $movieId);
+	$fromActorTable = getFromActorTable($link, $movieId);
+
+	$fromMovieCrew = getFromMovieCrew($link, $movieId);
+	$director = $fromMovieCrew["director"];
+	$editor = $fromMovieCrew["editor"];
+
+	$fromScreenwriters = getFromScreenwriters($link, $movieId);
+	$fromProducerTable = getFromProducerTable($link, $movieId);
+
 	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
 
 	if ($_SESSION["manager"]) {
@@ -31,10 +43,75 @@
 
         echo "\t<a href=\"logout.php\">Log Out</a></p>";
 
-	echo "<h3>Title: ".$title."</h3>";
+	echo "<h2>Title: ".$title."</h2>";
 	echo "<strong>Summary:</strong><br>".$summary."<br><br>";
 	echo "<strong>Release Date:</strong> ".$release."<br>";
-	echo "<strong>Duration:</strong> ".$duration."<br>";
+	echo "<strong>Duration:</strong> ".$duration."<br><br>";
+
+	echo "<strong>Language(s):</strong><br>";
+	if (mysqli_num_rows($fromLanguageTable) > 0) {
+		while($row = mysqli_fetch_assoc($fromLanguageTable)) {
+			echo $row["language"]."<br>";
+		}
+	} else {
+		echo "No language information available.<br>";
+	}
+	echo "<br>";
+
+	echo "<strong>Genre(s):</strong><br>";
+	if (mysqli_num_rows($fromGenreTable) > 0) {
+		while($row = mysqli_fetch_assoc($fromGenreTable)) {
+			echo $row["genre_type"]."<br>";
+		}
+	} else {
+		echo "No genre information available.<br>";
+	}
+	echo "<br>";
+
+	echo "<strong>Tag(s):</strong><br>";
+        if (mysqli_num_rows($fromTagTable) > 0) {
+                while($row = mysqli_fetch_assoc($fromTagTable)) {
+                        echo $row["tag_type"]."<br>";
+                }
+        } else {
+                echo "No tag information available.<br>";
+        }
+	echo "<br>";
+
+	echo "<h3>Crew</h3>";
+	echo "<strong>Actors:</strong><br>";
+        if (mysqli_num_rows($fromActorTable) > 0) {
+                while($row = mysqli_fetch_assoc($fromActorTable)) {
+                        echo $row["actor"]."<br>";
+                }
+        } else {
+                echo "No actor information available.<br>";
+        }
+        echo "<br>";
+
+	echo "<strong>Director:</strong><br>".$director."<br><br>";
+
+	echo "<strong>Producer(s):</strong><br>";
+        if (mysqli_num_rows($fromProducerTable) > 0) {
+                while($row = mysqli_fetch_assoc($fromProducerTable)) {
+                        echo $row["producer"]."<br>";
+                }
+        } else {
+                echo "No producer information available.<br>";
+        }
+        echo "<br>";
+
+	echo "<strong>Screenwriter(s):</strong><br>";
+        if (mysqli_num_rows($fromScreenwriters) > 0) {
+                while($row = mysqli_fetch_assoc($fromScreenwriters)) {
+                        echo $row["screenwriter"]."<br>";
+                }
+        } else {
+                echo "No screenwriter information available.<br>";
+        }
+        echo "<br>";
+
+	echo "<strong>Editor:</strong><br>".$editor."<br><br>";
 
 	$link->close();
 
@@ -62,6 +139,50 @@ function getFromMovieTable($link, $movieId)
 	$queryString = "SELECT * FROM MOVIES WHERE MOVIE_ID = ".$movieId.";";
 	$searchResult = $link->query($queryString);
 	return mysqli_fetch_assoc($searchResult);
+}
+
+function getFromLanguageTable($link, $movieId)
+{
+	$queryString = "SELECT * FROM LANGUAGES WHERE MOVIE_ID = ".$movieId.";";
+	return $link->query($queryString);
+}
+
+function getFromGenreTable($link, $movieId)
+{
+	$queryString = "SELECT * FROM MOVIE_GENRE WHERE MOVIE_ID = "
+		       .$movieId.";";
+	return $link->query($queryString);
+}
+
+function getFromTagTable($link, $movieId)
+{
+        $queryString = "SELECT * FROM MOVIE_TAG WHERE MOVIE_ID = "
+                       .$movieId.";";
+        return $link->query($queryString);
+}
+
+function getFromActorTable($link, $movieId)
+{
+        $queryString = "SELECT * FROM ACTORS WHERE MOVIE_ID = ".$movieId.";";
+        return $link->query($queryString);
+}
+
+function getFromMovieCrew($link, $movieId) {
+	$queryString = "SELECT * FROM MOVIE_CREW WHERE MOVIE_ID = "
+			.$movieId.";";
+        $searchResult = $link->query($queryString);
+        return mysqli_fetch_assoc($searchResult);
+}
+
+function getFromScreenwriters($link, $movieId) {
+	$queryString = "SELECT * FROM SCREENWRITER WHERE MOVIE_ID = "
+		       .$movieId.";";
+        return $link->query($queryString);	
+}
+
+function getFromProducerTable($link, $movieId) {
+	$queryString = "SELECT * FROM PRODUCER WHERE MOVIE_ID = ".$movieId.";";
+        return $link->query($queryString);
 }
 
 ?>
