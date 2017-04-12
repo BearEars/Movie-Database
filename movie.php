@@ -11,6 +11,13 @@
 		header("Location: /~twecto2/CS405/Movie-Database/home.html");
                 exit;
 	}
+	if(!isset($_GET["id"]) || $_GET["id"] == "") {
+		echo "<div id=\"top\">";
+		echo "Error: invalid movie_id<br><br>";
+		echo "<a href=\"main.php\">Return to Search</a>";
+		echo "</div>";
+		exit;
+	}
 	$link = establishLink();
 	$username = $_SESSION["username"];
 	$movieId = $_GET["id"];

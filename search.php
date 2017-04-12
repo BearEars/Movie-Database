@@ -34,6 +34,24 @@
 
 	$results = doSearch($link, $match, $searchString);
 
+	echo "<form action=\"search.php\" method=\"GET\">";
+	echo "<input type=\"hidden\" name=\"match\" value=\"".$match."\">";
+	echo "<input type=\"hidden\" name=\"search\" value=\""
+	     .$searchString."\">";
+	echo "<div style=\"color:white\">Sort by:</div> ";
+	echo "<select name=\"sortBy\">";
+	echo "<option value=\"title\">Title</option>";
+	echo "<option value=\"release\">Release Date</option>";
+	echo "<option value=\"duration\">Duration</option>";
+	echo "</select>";
+	echo "    <div style=\"color:white\"> Order:</div> ";
+	echo "<select name=\"sortOrder\">";
+	echo "<option value=\"ascending\">Ascending</option>";
+	echo "<option value=\"descending\">Descending</option>";
+	echo "</select><br>";
+	echo "<input type=\"submit\" value=\"Sort Results\">";
+	echo "</form><br>";
+
 	if (mysqli_num_rows($results) > 0) {
 		while($row = mysqli_fetch_assoc($results)) {
 			echo "<div class=\"info\">";
@@ -45,7 +63,7 @@
 			echo "</div>";
 		}
 	} else {
-		echo "No results found!<br>";
+		echo "<h2 class=\"bigwords\">No results found!</h2>";
 	}
 
 
