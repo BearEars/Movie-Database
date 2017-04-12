@@ -32,3 +32,15 @@ body {
 	border-color: darkslateblue;
 	border-radius: 5px;
 }
+
+.bigwords {
+	color: white;
+}
+
+.info {
+	background-color: lightslategrey;
+        border-style: solid;
+        border-color: darkslateblue;
+        border-width: 5px;
+	padding-left: 15px;
+}

@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Search Results</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body>
@@ -18,6 +19,7 @@
 	$results;
 
 	// display username at top of page with a log out link
+	echo "<div id=\"top\">";
 	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
 
 	if ($_SESSION["manager"]) {
@@ -28,16 +30,22 @@
         }
 
 	echo "\t<a href=\"logout.php\">Log Out</a></p>";
+	echo "</div>";
 
 	$results = doSearch($link, $match, $searchString);
 
 	if (mysqli_num_rows($results) > 0) {
 		while($row = mysqli_fetch_assoc($results)) {
-			echo "Title: <a href=\"movie.php?id=".$row["movie_id"]
-			     ."\">".$row["title"]."</a> Summary: "
-			     .$row["summary"]." Release: ".$row["release_date"]
-			     ." Duration: ".$row["duration"]."<br>";
+			echo "<div class=\"info\">";
+			echo "<h2>Title: <a href=\"movie.php?id="
+			     .$row["movie_id"]."\">".$row["title"]."</a></h2>"
+			     ." Summary:<br>".$row["summary"]
+			     ."<br><br>Release: ".$row["release_date"]
+			     ."<br>Duration: ".$row["duration"]."<br>";
+			echo "</div>";
 		}
+	} else {
+		echo "No results found!<br>";
 	}
 
 
@@ -66,10 +74,57 @@ function doSearch($link, $match, $searchString)
 	switch($match) {
 		case "title":
 		{
+			echo "<div class=\"bigwords\">";
+			echo "<h1>Showing results for movies with ".$searchString
+			     ." in the title...</h1>";
+			echo "</div>";
 			$queryString = "SELECT * FROM MOVIES WHERE TITLE LIKE"
 				       ." '%".$searchString."%';";
 			$searchResult = $link->query($queryString);
 			return $searchResult;
+		}
+		case "genre":
+		{
+			echo "<div class=\"bigwords\">";
+			echo "<h1>Showing results for movies in the "
+			     .$searchString." genre...</h1>";
+			echo "</div>";
+			$queryString = "SELECT * FROM MOVIES AS M"
+				      ." WHERE M.MOVIE_ID IN (SELECT MOVIE_ID"
+				      . " FROM MOVIE_GENRE WHERE GENRE_TYPE "
+				      ."LIKE '%".$searchString."%');";
+			$searchResult = $link->query($queryString);
+			return $searchResult;
+		}
+		case "director":
+		{
+			echo "<div class=\"bigwords\">";
+			echo "<h1>Showing results for movies directed by "
+			     .$searchString."...</h1>";
+			echo "</div>";
+			$queryString = "SELECT * FROM MOVIES AS M WHERE "
+				      ."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
+				      ."MOVIE_CREW WHERE DIRECTOR LIKE '%"
+				      .$searchString."%');";
+			$searchResult = $link->query($queryString);
+			return $searchResult;
+		}
+		case "actor":
+		{
+			echo "<div class=\"bigwords\">";
+			echo "<h1>Showing results for movies starring "
+			     .$searchString."...</h1>";
+			echo "</div>";
+			$queryString = "SELECT * FROM MOVIES AS M WHERE "
+                                      ."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
+                                      ."ACTORS WHERE ACTOR LIKE '%"
+                                      .$searchString."%');";
+                        $searchResult = $link->query($queryString);
+                        return $searchResult;
+		}
+		default:
+		{
+			return;
 		}
 	}
 }

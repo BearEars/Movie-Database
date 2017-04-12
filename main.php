@@ -53,7 +53,7 @@
 	echo "\t<form action=\"search.php\" method=\"GET\">\n";
 	// <----   FILL IN FORM HERE   ---->
 	echo "\t\t<select name=\"match\" class=\"search\">\n";
-	echo "\t\t\t<option value=\"nothing\"></option>\n";
+//	echo "\t\t\t<option value=\"nothing\"></option>\n";
 	echo "\t\t\t<option value=\"title\">Title</option>\n";
 	echo "\t\t\t<option value=\"genre\">Genre</option>\n";
 	echo "\t\t\t<option value=\"director\">Director</option>\n";

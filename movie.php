@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Movie Info</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 <?php
@@ -32,6 +33,9 @@
 	$fromScreenwriters = getFromScreenwriters($link, $movieId);
 	$fromProducerTable = getFromProducerTable($link, $movieId);
 
+	$fromRatingsTable = getFromRatingsTable($link, $movieId);
+
+	echo "<div id=\"top\">";
 	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
 
 	if ($_SESSION["manager"]) {
@@ -42,8 +46,11 @@
         }
 
         echo "\t<a href=\"logout.php\">Log Out</a></p>";
+	echo "</div>";
 
-	echo "<h2>Title: ".$title."</h2>";
+	echo "<h1 class=\"bigwords\">Title: ".$title."</h1>";
+
+	echo "<div class=\"info\">";
 	echo "<strong>Summary:</strong><br>".$summary."<br><br>";
 	echo "<strong>Release Date:</strong> ".$release."<br>";
 	echo "<strong>Duration:</strong> ".$duration."<br><br>";
@@ -77,8 +84,11 @@
                 echo "No tag information available.<br>";
         }
 	echo "<br>";
+	echo "</div>";
 
-	echo "<h3>Crew</h3>";
+	echo "<h2 class=\"bigwords\">Crew</h2>";
+
+	echo "<div class=\"info\">";
 	echo "<strong>Actors:</strong><br>";
         if (mysqli_num_rows($fromActorTable) > 0) {
                 while($row = mysqli_fetch_assoc($fromActorTable)) {
@@ -112,6 +122,20 @@
         echo "<br>";
 
 	echo "<strong>Editor:</strong><br>".$editor."<br><br>";
+	echo "</div>";	
+
+	echo "<h2 class=\"bigwords\">Reviews:</h2><br>";
+        if (mysqli_num_rows($fromRatingsTable) > 0) {
+                while($row = mysqli_fetch_assoc($fromRatingsTable)) {
+			echo "<div class=\"info\">";
+                        echo $row["username"].": ".$row["ratings"]."/10<br>";
+			echo $row["reviews"]."<br><br>";
+			echo "</div>";
+                }
+        } else {
+                echo "No reviews yet!<br>";
+        }
+        echo "<br>";
 
 	$link->close();
 
@@ -182,6 +206,11 @@ function getFromScreenwriters($link, $movieId) {
 
 function getFromProducerTable($link, $movieId) {
 	$queryString = "SELECT * FROM PRODUCER WHERE MOVIE_ID = ".$movieId.";";
+        return $link->query($queryString);
+}
+
+function getFromRatingsTable($link, $movieId) {
+        $queryString = "SELECT * FROM RATINGS WHERE MOVIE_ID = ".$movieId.";";
         return $link->query($queryString);
 }
 
