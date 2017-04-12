@@ -1,23 +1,25 @@
 <html>
 <head>
-	<title>Search Results</title>
+	<title>Movie Info</title>
 </head>
-
 <body>
 <?php
 
-	session_start(); // can use this to verify user is logged in
-	if (!isset($_SESSION["username"])) {
+	session_start();
+	if(!isset($_SESSION["username"])) {
 		header("Location: /~twecto2/CS405/Movie-Database/home.html");
-		exit;
+                exit;
 	}
 	$link = establishLink();
 	$username = $_SESSION["username"];
-	$match = $_GET["match"];
-	$searchString = $_GET["search"];
-	$results;
+	$movieId = $_GET["id"];
+	
+	$fromMovieTable = getFromMovieTable($link, $movieId);
+	$title = $fromMovieTable["title"];
+	$summary = $fromMovieTable["summary"];
+	$release = $fromMovieTable["release_date"];
+	$duration = $fromMovieTable["duration"];
 
-	// display username at top of page with a log out link
 	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
 
 	if ($_SESSION["manager"]) {
@@ -27,23 +29,17 @@
                      ." manager privileges.<br>";
         }
 
-	echo "\t<a href=\"logout.php\">Log Out</a></p>";
+        echo "\t<a href=\"logout.php\">Log Out</a></p>";
 
-	$results = doSearch($link, $match, $searchString);
-
-	if (mysqli_num_rows($results) > 0) {
-		while($row = mysqli_fetch_assoc($results)) {
-			echo "Title: <a href=\"movie.php?id=".$row["movie_id"]
-			     ."\">".$row["title"]."</a> Summary: "
-			     .$row["summary"]." Release: ".$row["release_date"]
-			     ." Duration: ".$row["duration"]."<br>";
-		}
-	}
-
+	echo "<h3>Title: ".$title."</h3>";
+	echo "<strong>Summary:</strong><br>".$summary."<br><br>";
+	echo "<strong>Release Date:</strong> ".$release."<br>";
+	echo "<strong>Duration:</strong> ".$duration."<br>";
 
 	$link->close();
 
-//----------------------------- FUNCTIONS -------------------------------------
+//-------------------------------- FUNCTIONS ----------------------------------
+
 function establishLink()
 {
         // create link to MySQL database
@@ -61,19 +57,13 @@ function establishLink()
         return $link;
 }
 
-function doSearch($link, $match, $searchString)
+function getFromMovieTable($link, $movieId)
 {
-	switch($match) {
-		case "title":
-		{
-			$queryString = "SELECT * FROM MOVIES WHERE TITLE LIKE"
-				       ." '%".$searchString."%';";
-			$searchResult = $link->query($queryString);
-			return $searchResult;
-		}
-	}
+	$queryString = "SELECT * FROM MOVIES WHERE MOVIE_ID = ".$movieId.";";
+	$searchResult = $link->query($queryString);
+	return mysqli_fetch_assoc($searchResult);
 }
+
 ?>
 </body>
-
 </html>

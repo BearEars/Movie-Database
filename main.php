@@ -15,10 +15,11 @@
 		registerUser($_POST, $link);
 		$username = $_POST["Username"];
 		$_SESSION["username"] = $username;
+		$_SESSION["manager"] = 0;
 	}
 	elseif (fromHome($_POST)) {
 		$link = establishLink();
-		login($_POST, $link);
+		$_SESSION["manager"] = login($_POST, $link);
 		$username = $_POST["Username"];
 		$_SESSION["username"] = $username;
 	}
@@ -35,6 +36,14 @@
 	// display username at top of page with a log out link
 	echo "<div id=\"top\">";
 	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
+
+	if ($_SESSION["manager"]) {
+		echo "You have manager privileges!<br>";
+	} else {
+		echo "Click <a href=\"managerApp.php\">here</a> to apply for"
+		     ." manager privileges.<br>";
+	}
+
 	echo "\t<a href=\"logout.php\">Log Out</a></p>";
 	echo "</div>\n";
 	echo "<div id=\"padding\"></div>";
@@ -93,7 +102,7 @@ function login($postVars, $link) {
 	$password = $postVars["Password"];
 
 	// construct query string for password
-	$passQueryString = "SELECT password FROM USERS WHERE username = '"
+	$passQueryString = "SELECT * FROM USERS WHERE username = '"
 			.$username."';";
 
 	// get result from database and store in an associative array
@@ -104,6 +113,8 @@ function login($postVars, $link) {
 	if ($password != $passRow["password"]) {
 		exit("Access denied: Password could not be verified");
 	}
+
+	return $passRow["_manager"];
 }
 // ----------------------------------------------------------------------------
 
