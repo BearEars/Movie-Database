@@ -39,7 +39,7 @@ Rating:
 	<option value="10">10</option>
 </select><br>
 Reveiw:
-<input type="text" name ="review" class="textfield"><br>
+<input type="text" name="review" class="textfield"><br>
 	<?php
 	echo "<input type=\"hidden\" name=\"movie_id\" value=\"".$_GET["movie_id"]."\">";
 	?>
