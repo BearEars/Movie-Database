@@ -23,7 +23,7 @@
         echo "</div>";
 ?>
 
-<form action=\"submitreview.php\">
+<form action="submitreview.php">
 Rating:
 <select name="rating">
 	<option value="0">0</option>
