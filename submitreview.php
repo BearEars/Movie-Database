@@ -60,7 +60,7 @@ function addReview($link, $username, $rating, $review, $movieId)
 {
 	$queryString = "INSERT INTO RATINGS(username, movie_id, ratings, "
 		       ."reviews) VALUES (".$username.", ".$movieId.", "
-		       .$rating.", ".$review.");
+		       .$rating.", ".$review.");";
 	$link->query($queryString);
 }
 

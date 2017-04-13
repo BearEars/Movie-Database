@@ -147,7 +147,7 @@
         echo "<br>";
 
 	echo "<a href=\"review.php?movie_id=".$_GET["id"]
-	     ."&username=".$username."\">Add a review!</a>";
+	     ."\">Add a review!</a>";
 
 	$link->close();
 
