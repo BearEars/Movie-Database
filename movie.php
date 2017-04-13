@@ -5,7 +5,7 @@
 </head>
 <body>
 <?php
-
+	include 'movie_db_funcs.php';
 	session_start();
 	if(!isset($_SESSION["username"])) {
 		header("Location: /~twecto2/CS405/Movie-Database/home.html");
@@ -189,7 +189,7 @@
 	     ."\">Add a review!</a>";
 
 	$link->close();
-
+/*
 //-------------------------------- FUNCTIONS ----------------------------------
 
 function establishLink()
@@ -199,7 +199,7 @@ function establishLink()
            equal to linkblue account; cannot rename database or add
            users to MySQL this way, so connection will have to be established 
            this way for all users, and authentication will occur within db
-           for each user */
+           for each user 
         $link = mysqli_connect("mysql.cs.uky.edu", "twecto2",
                                "2017CS405Project", "twecto2");
         if (!$link) {
@@ -243,7 +243,7 @@ function getFromActorTable($link, $movieId)
 }
 
 function getFromMovieCrew($link, $movieId) {
-	/* REMOVE THIS FUNCTION WHEN DATABASE IS UPDATED!!!!! */
+	/* REMOVE THIS FUNCTION WHEN DATABASE IS UPDATED!!!!! 
 	$queryString = "SELECT * FROM MOVIE_CREW WHERE MOVIE_ID = "
 			.$movieId.";";
         $searchResult = $link->query($queryString);
@@ -277,7 +277,7 @@ function getFromRatingsTable($link, $movieId) {
         $queryString = "SELECT * FROM RATINGS WHERE MOVIE_ID = ".$movieId.";";
         return $link->query($queryString);
 }
-
+*/
 ?>
 </body>
 </html>

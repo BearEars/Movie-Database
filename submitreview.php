@@ -6,6 +6,7 @@
 <body>
 
 <?php
+	include 'movie_db_funcs.php';
 	session_start(); // can use this to verify user is logged in
         if (!isset($_SESSION["username"])) {
                 header("Location: /~twecto2/CS405/Movie-Database/home.html");

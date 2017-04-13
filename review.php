@@ -1,3 +1,4 @@
+<html>
 <head>
 	<title>Review</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
@@ -47,3 +48,4 @@ Reveiw:
 </form>
 
 </body>
+</html>

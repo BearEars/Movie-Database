@@ -6,6 +6,7 @@
 
 <body>
 <?php
+	include 'movie_db_funcs.php';
 	$link;
 	$username;
 	session_start(); // I think this will let users stay logged in
@@ -70,7 +71,7 @@
 	echo "</div>";
 
 	$link->close();
-
+/*
 // ------------------------ FUNCTIONS -----------------------------------------
 function establishLink()
 {
@@ -79,7 +80,7 @@ function establishLink()
 	   equal to linkblue account; cannot rename database or add
 	   users to MySQL this way, so connection will have to be established 
            this way for all users, and authentication will occur within db
-	   for each user */
+	   for each user 
         $link = mysqli_connect("mysql.cs.uky.edu", "twecto2",
                                "2017CS405Project", "twecto2");
         if (!$link) {
@@ -91,7 +92,7 @@ function establishLink()
 // ------------------ USER LOGIN FROM MAIN.HTML -------------------------------
 function fromHome($postVars) {
 	/* Function checks if post variables from home.html are set;
-           returns true if they are, false otherwise */
+           returns true if they are, false otherwise 
 	$varsSet = True; 
         if (!isset($postVars["Username"]))
                 $varsSet = False;
@@ -125,7 +126,7 @@ function login($postVars, $link) {
 // ------------- USER REGISTRATION FROM USER_REGISTRATION.HTML ----------------
 function fromUserReg($postVars) {
 	/* Function checks if post variables from user_registration.html
-	   are set; returns true if they are, false otherwise */
+	   are set; returns true if they are, false otherwise 
 	$varsSet = True;
 	if (!isset($postVars["Username"]))
 		$varsSet = False;
@@ -171,6 +172,7 @@ function registerUser($postVars, $link) {
 	$link->query($insertUserString);
 }
 // ----------------------------------------------------------------------------
+*/
 ?>
 </body>
 </html>
