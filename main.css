@@ -52,4 +52,5 @@ body {
  	width: 600px;
 	height: 200px;
 	padding-bottom:180px;
+	white-space:normal;
  }
