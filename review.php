@@ -24,6 +24,7 @@
 ?>
 
 <form action=\"submitreview.php\">
+Rating:
 <select name="rating">
 	<option value="0">0</option>
 	<option value="1">1</option>
@@ -37,6 +38,7 @@
 	<option value="9">9</option>
 	<option value="10">10</option>
 </select><br>
+Reveiw:
 <input type="text" name ="review" class="textfield"><br>
 	<?php
 	echo "<input type=\"hidden\" name=\"movie_id\" value=\"".$_GET["movie_id"]."\">";
