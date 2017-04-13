@@ -41,7 +41,7 @@ Rating:
 Reveiw:
 <input type="text" name ="review" class="textfield"><br>
 	<?php
-	echo "<input type=\"hidden\" name=\"movie_id\" value=\"".$_GET["movie_id"]."\" name=\"username\" value=\"".$_GET["username"]."\">";
+	echo "<input type=\"hidden\" name=\"movie_id\" value=\"".$_GET["movie_id"]."\">";
 	?>
 	<input type="submit" value="Submit">
 </form>
