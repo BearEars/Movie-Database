@@ -36,7 +36,7 @@
 	<option value="8">8</option>
 	<option value="9">9</option>
 	<option value="10">10</option>
-</select>
+</select><br>
 <input type="text" name ="review" class="textfield"><br>
 	<?php
 	echo "<input type=\"hidden\" name=\"movie_id\" value=\"".$_GET["movie_id"]."\">";
