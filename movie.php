@@ -92,7 +92,7 @@
         }
 	echo "<br><br>";
 	echo "<a href=\"addtag.php?movie_id=".$_GET["id"]
-	     ."\">Add a tag!</a>";
+	     ."&username=".$username."\">Add a tag!</a>";
 	echo "</div>";
 
 	echo "<h2 class=\"bigwords\">Crew</h2>";
@@ -147,7 +147,7 @@
         echo "<br>";
 
 	echo "<a href=\"review.php?movie_id=".$_GET["id"]
-	     ."\">Add a review!</a>";
+	     ."&username=".$username."\">Add a review!</a>";
 
 	$link->close();
 

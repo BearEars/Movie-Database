@@ -54,7 +54,7 @@ function establishLink()
 
 function addReview($link, $rating, $review, $movieId)
 {
-	$queryString = "INSERT INTO 
+	$queryString = "INSERT INTO RATINGS(
 }
 
 ?>
