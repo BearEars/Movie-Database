@@ -58,6 +58,10 @@
 	echo "<h1 class=\"bigwords\">Title: ".$title."</h1>";
 
 	echo "<div class=\"info\">";
+	if ($_SESSION["manager"]) {
+		echo "<a href=\"editmovie.php?id=".$movieId."\">";
+		echo "Edit Movie</a><br><br>";
+	}
 	echo "<strong>Summary:</strong><br>".$summary."<br><br>";
 	echo "<strong>Release Date:</strong> ".$release."<br>";
 	echo "<strong>Duration:</strong> ".$duration."<br><br>";

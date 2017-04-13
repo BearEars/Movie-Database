@@ -63,6 +63,10 @@
 	      class=\"search\">\n";
 	echo "\t\t<input type=\"submit\" value=\"Search\" class=\"search\">\n";
 	echo "\t</form>";
+	if ($_SESSION["manager"]) {
+		echo "<br>OR:";
+		echo "<br><a href=\"addmovie.php\">Add a New Movie</a>";
+	}
 	echo "</div>";
 
 	$link->close();

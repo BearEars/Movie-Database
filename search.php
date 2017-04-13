@@ -52,6 +52,11 @@
 	echo "<input type=\"submit\" value=\"Sort Results\">";
 	echo "</form><br>";
 
+	if ($_SESSION["manager"]) {
+		echo "<div class=\"info\"><a href=\"addmovie.php\">";
+		echo "Add a New Movie</a></div>";
+	}
+
 	if (mysqli_num_rows($results) > 0) {
 		while($row = mysqli_fetch_assoc($results)) {
 			echo "<div class=\"info\">";
@@ -60,6 +65,11 @@
 			     ." Summary:<br>".$row["summary"]
 			     ."<br><br>Release: ".$row["release_date"]
 			     ."<br>Duration: ".$row["duration"]."<br>";
+			if ($_SESSION["manager"]) {
+				echo "<br><a href=\"editmovie.php?id="
+				     .$row["movie_id"]."\">";
+				echo "Edit Movie</a>";
+			}
 			echo "</div>";
 		}
 	} else {
