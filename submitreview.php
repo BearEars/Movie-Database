@@ -34,7 +34,7 @@
 	$movieId = $_POST["movie_id"];
 	$username = $_SESSION["username"];
 
-	addReview($link, $rating, $review, $movieId);
+	addReview($link, $username, $rating, $review, $movieId);
 	echo "Review successfully added!<br>";
 	echo "<a href=\"main.php\">Return to Search</a>";
 
@@ -58,9 +58,9 @@ function establishLink()
 
 function addReview($link, $username, $rating, $review, $movieId)
 {
-	$queryString = "INSERT INTO RATINGS(username, movie_id, ratings, "
-		       ."reviews) VALUES (".$username.", ".$movieId.", "
-		       .$rating.", ".$review.");";
+	$queryString = "INSERT INTO RATINGS VALUES ('"
+		       .$username."', ".$movieId.", "
+		       .$rating.", '".$review."');";
 	$link->query($queryString);
 }
 
