@@ -36,6 +36,8 @@
 	<option value="9">9</option>
 	<option value="10">10</option>
 </select>
-<select
+<input type="text" name ="review" class="textfield"><br>
+<input type="text" name="submit">
+</form>
 
 </body>
