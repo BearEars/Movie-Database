@@ -16,6 +16,8 @@
 		exit("Error: invalid movid_id");
 	}
 
+	$username = $_SESSION["username"];
+
         echo "<div id=\"top\">";
         echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
         echo "You have manager privileges!<br>";

@@ -15,6 +15,7 @@
 		header("Location: /~twecto2/CS405/Movie-Database/main.php");
 		exit;
 	}
+	$username = $_SESSION["username"];
 	echo "<div id=\"top\">";
         echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
 
@@ -32,7 +33,6 @@
 	$rating = $_POST["rating"];
 	$review = $_POST["review"];
 	$movieId = $_POST["movie_id"];
-	$username = $_SESSION["username"];
 
 	addReview($link, $username, $rating, $review, $movieId);
 	echo "Review successfully added!<br>";

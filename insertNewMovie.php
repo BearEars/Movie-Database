@@ -11,6 +11,7 @@
                 header("Location: /~twecto2/CS405/Movie-Database/home.html");
                 exit;
         }
+	$username = $_SESSION["username"];
         
         echo "<div id=\"top\">";
         echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
