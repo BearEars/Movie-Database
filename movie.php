@@ -90,7 +90,8 @@
         } else {
                 echo "No tag information available.<br>";
         }
-	echo "<br>";
+	echo "<br><br>";
+	echo "<a href=\"addtag.php\">Add a tag!</a>";
 	echo "</div>";
 
 	echo "<h2 class=\"bigwords\">Crew</h2>";
@@ -143,6 +144,8 @@
                 echo "No reviews yet!<br>";
         }
         echo "<br>";
+
+	echo "<a href=\"review.php\">Add a review!</a>";
 
 	$link->close();
 
