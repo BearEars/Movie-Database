@@ -10,7 +10,7 @@
                 exit;
         }
 	echo "<div id=\"top\">";
-        echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
+        echo "\t<p style=\"font-size:75%\">Logged in as: ".$_SESSION["username"]."<br>";
 
         if ($_SESSION["manager"]) {
                 echo "You have manager privileges!<br>";
