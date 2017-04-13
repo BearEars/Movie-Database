@@ -50,6 +50,6 @@ body {
  	border-style:solid;
  	border-color: darkslateblue;
  	width: 600px;
-	height: 250px;
-	vertical-align:text-top;
+	height: 200px;
+	line-height:95px;
  }
