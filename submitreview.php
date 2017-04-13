@@ -31,8 +31,12 @@
 	$link = establishLink();
 	$rating = $_POST["rating"];
 	$review = $_POST["review"];
+	$movieId = $_POST["movie_id"];
+	$username = $_SESSION["username"];
 
-	addReview($link, $rating, $review, $_POST["movie_id"]);
+	addReview($link, $rating, $review, $movieId);
+	echo "Review successfully added!<br>";
+	echo "<a href=\"main.php\">Return to Search</a>";
 
 //---------------------------- FUNCTIONS --------------------------------------
 function establishLink()
@@ -52,9 +56,12 @@ function establishLink()
         return $link;
 }
 
-function addReview($link, $rating, $review, $movieId)
+function addReview($link, $username, $rating, $review, $movieId)
 {
-	$queryString = "INSERT INTO RATINGS(
+	$queryString = "INSERT INTO RATINGS(username, movie_id, ratings, "
+		       ."reviews) VALUES (".$username.", ".$movieId.", "
+		       .$rating.", ".$review.");
+	$link->query($queryString);
 }
 
 ?>
