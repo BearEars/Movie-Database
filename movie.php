@@ -91,7 +91,8 @@
                 echo "No tag information available.<br>";
         }
 	echo "<br><br>";
-	echo "<a href=\"addtag.php\">Add a tag!</a>";
+	echo "<a href=\"addtag.php?movie_id=".$_GET["id"].
+	     ."\">Add a tag!</a>";
 	echo "</div>";
 
 	echo "<h2 class=\"bigwords\">Crew</h2>";
@@ -145,7 +146,8 @@
         }
         echo "<br>";
 
-	echo "<a href=\"review.php\">Add a review!</a>";
+	echo "<a href=\"review.php?movie_id=".$_GET["id"]
+	     ."\">Add a review!</a>";
 
 	$link->close();
 
