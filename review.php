@@ -1,5 +1,6 @@
 <head>
 	<title>Review</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 <?php
@@ -37,7 +38,10 @@
 	<option value="10">10</option>
 </select>
 <input type="text" name ="review" class="textfield"><br>
-	<button type="button">Submit</button>
+	<?php
+	echo "<input type=\"hidden\" name=\"movie_id\" value=\"".$_GET["movie_id"]."\">";
+	?>
+	<input type="submit" value="Submit">
 </form>
 
 </body>
