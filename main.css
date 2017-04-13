@@ -51,4 +51,5 @@ body {
  	border-color: darkslateblue;
  	width: 600px;
 	height: 250px;
+	vertical-align:text-top;
  }
