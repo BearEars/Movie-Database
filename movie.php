@@ -33,9 +33,16 @@
 	$fromTagTable = getFromTagTable($link, $movieId);
 	$fromActorTable = getFromActorTable($link, $movieId);
 
+// REMOVE THIS BLOCK OF CODE WHEN DATABASE IS UPDATED -------------------------
 	$fromMovieCrew = getFromMovieCrew($link, $movieId);
 	$director = $fromMovieCrew["director"];
 	$editor = $fromMovieCrew["editor"];
+//----------------------------------------------------------------------------
+
+/* UNCOMMENT THIS BLOCK WHEN DATABASE IS UPDATED ----------------------------
+	$fromDirectorTable = getFromDirectors($link, $movieId);
+	$fromEditorTable = getFromEditorTable($link, $movieId);
+----------------------------------------------------------------------------*/
 
 	$fromScreenwriters = getFromScreenwriters($link, $movieId);
 	$fromProducerTable = getFromProducerTable($link, $movieId);
@@ -112,7 +119,21 @@
         }
         echo "<br>";
 
+// REMOVE THIS LINE AFTER DATABASE IS UPDATED --------------------------------
 	echo "<strong>Director:</strong><br>".$director."<br><br>";
+//---------------------------------------------------------------------------
+
+/* UNCOMMENT THIS BLOCK AFTER DATABASE IS UPDATED ---------------------------
+	echo "<strong>Director(s):</strong><br>";
+        if (mysqli_num_rows($fromDirectorTable) > 0) {
+                while($row = mysqli_fetch_assoc($fromDirectorTable)) {
+                        echo $row["director"]."<br>";
+                }
+        } else {
+                echo "No director information available.<br>";
+        }
+        echo "<br>";
+-----------------------------------------------------------------------------*/
 
 	echo "<strong>Producer(s):</strong><br>";
         if (mysqli_num_rows($fromProducerTable) > 0) {
@@ -134,7 +155,21 @@
         }
         echo "<br>";
 
+// REMOVE LINE AFTER DB IS UPDATED -------------------------------------------
 	echo "<strong>Editor:</strong><br>".$editor."<br><br>";
+// ---------------------------------------------------------------------------
+
+/* UNCOMMENT AFTER DB UPDATED ------------------------------------------------
+	echo "<strong>Editor(s):</strong><br>";
+        if (mysqli_num_rows($fromEditorTable) > 0) {
+                while($row = mysqli_fetch_assoc($fromEditorTable)) {
+                        echo $row["editor"]."<br>";
+                }
+        } else {
+                echo "No editor information available.<br>";
+        }
+        echo "<br>";
+----------------------------------------------------------------------------*/
 	echo "</div>";	
 
 	echo "<h2 class=\"bigwords\">Reviews:</h2><br>";
@@ -208,10 +243,23 @@ function getFromActorTable($link, $movieId)
 }
 
 function getFromMovieCrew($link, $movieId) {
+	/* REMOVE THIS FUNCTION WHEN DATABASE IS UPDATED!!!!! */
 	$queryString = "SELECT * FROM MOVIE_CREW WHERE MOVIE_ID = "
 			.$movieId.";";
         $searchResult = $link->query($queryString);
         return mysqli_fetch_assoc($searchResult);
+}
+
+function getFromDirectors($link, $movieId) {
+        $queryString = "SELECT * FROM DIRECTORS WHERE MOVIE_ID = "
+                       .$movieId.";";
+        return $link->query($queryString);
+}
+
+function getFromEditors($link, $movieId) {
+        $queryString = "SELECT * FROM EDITORS WHERE MOVIE_ID = "
+                       .$movieId.";";
+        return $link->query($queryString);
 }
 
 function getFromScreenwriters($link, $movieId) {
