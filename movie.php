@@ -91,7 +91,7 @@
                 echo "No tag information available.<br>";
         }
 	echo "<br><br>";
-	echo "<a href=\"addtag.php?movie_id=".$_GET["id"].
+	echo "<a href=\"addtag.php?movie_id=".$_GET["id"]
 	     ."\">Add a tag!</a>";
 	echo "</div>";
 

@@ -44,10 +44,3 @@ body {
         border-width: 5px;
 	padding-left: 15px;
 }
-.textfield {
-	background-color: white;
-	border-style:solid;
-	border-color: darkslateblue;
-	border-width: 600px;
-	height: 200px;
-}
