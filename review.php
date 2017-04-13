@@ -37,7 +37,7 @@
 	<option value="10">10</option>
 </select>
 <input type="text" name ="review" class="textfield"><br>
-<input type="text" name="submit">
+	<button type="button">Submit</button>
 </form>
 
 </body>
