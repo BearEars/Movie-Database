@@ -29,9 +29,9 @@
 	insertGenres($link, $movieId, $_POST);
 	insertTags($link, $movieId, $_POST);
 	insertActors($link, $movieId, $_POST);
-//	insertDirectors($link, $movieId, $_POST);
+	insertDirectors($link, $movieId, $_POST);
 	insertProducers($link, $movieId, $_POST);
-//	insertEditors($link, $movieId, $_POST);
+	insertEditors($link, $movieId, $_POST);
 	insertScreenwriters($link, $movieId, $_POST);
 
         

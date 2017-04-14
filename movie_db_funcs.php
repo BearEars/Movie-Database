@@ -134,7 +134,7 @@ function doSearch($link, $match, $searchString)
                         echo "</div>";
                         $queryString = "SELECT * FROM MOVIES AS M WHERE "
                                       ."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
-                                      ."MOVIE_CREW WHERE DIRECTOR LIKE '%"
+                                      ."DIRECTORS WHERE DIRECTOR LIKE '%"
                                       .$searchString."%');";
                         $searchResult = $link->query($queryString);
                         return $searchResult;
@@ -192,14 +192,6 @@ function getFromActorTable($link, $movieId)
         return $link->query($queryString);
 }
 
-function getFromMovieCrew($link, $movieId) {
-        /* REMOVE THIS FUNCTION WHEN DATABASE IS UPDATED!!!!! */
-        $queryString = "SELECT * FROM MOVIE_CREW WHERE MOVIE_ID = "
-                        .$movieId.";";
-        $searchResult = $link->query($queryString);
-        return mysqli_fetch_assoc($searchResult);
-}
-
 function getFromDirectors($link, $movieId) {
         $queryString = "SELECT * FROM DIRECTORS WHERE MOVIE_ID = "
                        .$movieId.";";
@@ -233,9 +225,9 @@ function insertMovieTable($post, $link)
 {
         // inserts movie into MOVIES table and returns new movie_id
         $queryString = "INSERT INTO MOVIES(title, summary, release_date, "
-                      ."duration, avg_rating) VALUES ('".$post["title"]
+                      ."duration) VALUES ('".$post["title"]
                       ."', '".$post["summary"]."', '".$post["release"]."', '"
-                      .$post["duration"]."', 'NULL');";
+                      .$post["duration"]."');";
         $retrievalString = "SELECT * FROM MOVIES WHERE TITLE = '"
                            .$post["title"]."';";
 

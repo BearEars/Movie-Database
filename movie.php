@@ -33,16 +33,8 @@
 	$fromTagTable = getFromTagTable($link, $movieId);
 	$fromActorTable = getFromActorTable($link, $movieId);
 
-// REMOVE THIS BLOCK OF CODE WHEN DATABASE IS UPDATED -------------------------
-	$fromMovieCrew = getFromMovieCrew($link, $movieId);
-	$director = $fromMovieCrew["director"];
-	$editor = $fromMovieCrew["editor"];
-//----------------------------------------------------------------------------
-
-/* UNCOMMENT THIS BLOCK WHEN DATABASE IS UPDATED ----------------------------
 	$fromDirectorTable = getFromDirectors($link, $movieId);
-	$fromEditorTable = getFromEditorTable($link, $movieId);
-----------------------------------------------------------------------------*/
+	$fromEditorTable = getFromEditors($link, $movieId);
 
 	$fromScreenwriters = getFromScreenwriters($link, $movieId);
 	$fromProducerTable = getFromProducerTable($link, $movieId);
@@ -119,11 +111,6 @@
         }
         echo "<br>";
 
-// REMOVE THIS LINE AFTER DATABASE IS UPDATED --------------------------------
-	echo "<strong>Director:</strong><br>".$director."<br><br>";
-//---------------------------------------------------------------------------
-
-/* UNCOMMENT THIS BLOCK AFTER DATABASE IS UPDATED ---------------------------
 	echo "<strong>Director(s):</strong><br>";
         if (mysqli_num_rows($fromDirectorTable) > 0) {
                 while($row = mysqli_fetch_assoc($fromDirectorTable)) {
@@ -133,7 +120,6 @@
                 echo "No director information available.<br>";
         }
         echo "<br>";
------------------------------------------------------------------------------*/
 
 	echo "<strong>Producer(s):</strong><br>";
         if (mysqli_num_rows($fromProducerTable) > 0) {
@@ -155,11 +141,6 @@
         }
         echo "<br>";
 
-// REMOVE LINE AFTER DB IS UPDATED -------------------------------------------
-	echo "<strong>Editor:</strong><br>".$editor."<br><br>";
-// ---------------------------------------------------------------------------
-
-/* UNCOMMENT AFTER DB UPDATED ------------------------------------------------
 	echo "<strong>Editor(s):</strong><br>";
         if (mysqli_num_rows($fromEditorTable) > 0) {
                 while($row = mysqli_fetch_assoc($fromEditorTable)) {
@@ -169,7 +150,6 @@
                 echo "No editor information available.<br>";
         }
         echo "<br>";
-----------------------------------------------------------------------------*/
 	echo "</div>";	
 
 	echo "<h2 class=\"bigwords\">Reviews:</h2><br>";
@@ -177,16 +157,17 @@
                 while($row = mysqli_fetch_assoc($fromRatingsTable)) {
 			echo "<div class=\"info\">";
                         echo $row["username"].": ".$row["ratings"]."/10<br>";
-			echo $row["reviews"]."<br><br>";
+			echo $row["REVIEWS"]."<br><br>";
 			echo "</div>";
                 }
         } else {
                 echo "No reviews yet!<br>";
         }
         echo "<br>";
-
+	echo "<div class=\"info\">";
 	echo "<a href=\"review.php?movie_id=".$_GET["id"]
 	     ."\">Add a review!</a>";
+	echo "</div>";
 
 	$link->close();
 

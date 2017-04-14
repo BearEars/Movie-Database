@@ -64,13 +64,6 @@
                 $actIndex += 1;
         }
 
-// REMOVE BLOCK AFTER UPDATE TO DB -------------------------------------------
-        $fromMovieCrew = getFromMovieCrew($link, $movieId);
-        $director = $fromMovieCrew["director"];
-        $editor = $fromMovieCrew["editor"];
-// ---------------------------------------------------------------------------
-
-/* UNCOMMENT AFTER DB UPDATE ------------------------------------------------
 	$fromDirectorTable = getFromDirectors($link, $movieId);
 	$directors = array_fill(0, 2, "");
         $dirIndex = 0;
@@ -79,14 +72,13 @@
                 $dirIndex += 1;
         }
 
-        $fromEditorTable = getFromEditorTable($link, $movieId);
+        $fromEditorTable = getFromEditors($link, $movieId);
 	$editors = array_fill(0, 3, "");
         $editIndex = 0;
         while ($row = mysqli_fetch_assoc($fromEditorTable)) {
                 $editors[$editIndex] = $row["editor"];
                 $editIndex += 1;
         }
----------------------------------------------------------------------------*/
 
         $fromScreenwriters = getFromScreenwriters($link, $movieId);
 	$screenwriters = array_fill(0, 3, "");
@@ -174,10 +166,6 @@
         echo "<br><br>";
 
 	echo "Director(s):<br>";
-	
-// DELETE THIS NEXT LINE WHEN DB UPDATED ---------------------------------
-	echo "<input type=\"text\" name=\"direc0\" value=\"".$director."\">";
-/* UNCOMMENT WHEN DB UPDATE --------------------------------------------
         for ($i = 0; $i < 2; $i++) {
                 if ($directors[$i] != "") {
                         echo "<input type=\"text\" name=\"direc".$i."\" "
@@ -186,7 +174,7 @@
                         echo "<input type=\"text\" name=\"direc".$i."\"><br>";
                 }
         }
------------------------------------------------------------------------*/
+
         echo "<br><br>";
 
 	echo "Producer(s):<br>";
@@ -212,9 +200,6 @@
         echo "<br><br>";
 
 	echo "Editor(s):<br>";
-// REMOVE WHEN DB UPDATED----------------------------
-	echo "<input type=\"text\" name=\"edit0\" value=\"".$editor."\">";
-/* UNCOMMENT WHEN DB UPDATED ---------------------------------------------
         for ($i = 0; $i < 3; $i++) {
                 if ($editors[$i] != "") {
                         echo "<input type=\"text\" name=\"edit".$i."\" "
@@ -223,7 +208,7 @@
                         echo "<input type=\"text\" name=\"edit".$i."\"><br>";
                 }
         }
-----------------------------------------*/
+
         echo "<br><br>";
 ?>
 
