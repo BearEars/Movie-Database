@@ -34,6 +34,8 @@
 
 	$results = doSearch($link, $match, $searchString);
 
+/* FORM FOR SORTING RESULTS IF WE GET TIME TO IMPLEMENT IT
+
 	echo "<form action=\"search.php\" method=\"GET\">";
 	echo "<input type=\"hidden\" name=\"match\" value=\"".$match."\">";
 	echo "<input type=\"hidden\" name=\"search\" value=\""
@@ -51,7 +53,7 @@
 	echo "</select><br>";
 	echo "<input type=\"submit\" value=\"Sort Results\">";
 	echo "</form><br>";
-
+----------------------------------------------------------------------------*/
 	if ($_SESSION["manager"]) {
 		echo "<div class=\"info\"><a href=\"addmovie.php\">";
 		echo "Add a New Movie</a></div>";
@@ -62,9 +64,10 @@
 			echo "<div class=\"info\">";
 			echo "<h2>Title: <a href=\"movie.php?id="
 			     .$row["movie_id"]."\">".$row["title"]."</a></h2>"
-			     ." Summary:<br>".$row["summary"]
-			     ."<br><br>Release: ".$row["release_date"]
-			     ."<br>Duration: ".$row["duration"]."<br>";
+			     ." <strong>Summary:</strong><br>".$row["summary"]
+			     ."<br><br><strong>Release</strong>: "
+			     .$row["release_date"]."<br><strong>"
+			     ."Duration:</strong> ".$row["duration"]."<br>";
 			if ($_SESSION["manager"]) {
 				echo "<br><a href=\"editmovie.php?id="
 				     .$row["movie_id"]."\">";

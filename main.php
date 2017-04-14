@@ -59,6 +59,10 @@
 	echo "\t\t\t<option value=\"genre\">Genre</option>\n";
 	echo "\t\t\t<option value=\"director\">Director</option>\n";
 	echo "\t\t\t<option value=\"actor\">Actor</option>\n";
+	echo "\t\t\t<option value=\"language\">Language</option>\n";
+	echo "\t\t\t<option value=\"producer\">Producer</option>\n";
+	echo "\t\t\t<option value=\"editor\">Editor</option>\n";
+	echo "\t\t\t<option value=\"screenwriter\">Screenwriter</option>\n";
 	echo "\t\t</select>\n";
 	echo "\t\t<input type=\"text\" name=\"search\" size=\"50\"
 	      class=\"search\">\n";
