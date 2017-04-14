@@ -23,7 +23,6 @@
         $link = establishLink();
         
 	$movieId = insertMovieTable($_POST, $link);
-	echo $movieId;
 
 	insertLanguages($link, $movieId, $_POST);
 	insertGenres($link, $movieId, $_POST);
@@ -34,7 +33,6 @@
 	insertEditors($link, $movieId, $_POST);
 	insertScreenwriters($link, $movieId, $_POST);
 
-        
         echo "Movie successfully added!<br>";
         echo "<a href=\"main.php\">Return to Search</a>";
 

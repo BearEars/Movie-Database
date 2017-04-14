@@ -105,8 +105,8 @@ function doSearch($link, $match, $searchString)
                 case "title":
                 {
                         echo "<div class=\"bigwords\">";
-                        echo "<h1>Showing results for movies with ".$searchString
-                             ." in the title...</h1>";
+                        echo "<h1>Showing results for movies with '"
+			     .$searchString."' in the title...</h1>";
                         echo "</div>";
                         $queryString = "SELECT * FROM MOVIES WHERE TITLE LIKE"
                                        ." '%".$searchString."%';";
@@ -116,8 +116,8 @@ function doSearch($link, $match, $searchString)
                 case "genre":
                 {
                         echo "<div class=\"bigwords\">";
-                        echo "<h1>Showing results for movies in the "
-                             .$searchString." genre...</h1>";
+                        echo "<h1>Showing results for movies in the '"
+                             .$searchString."' genre...</h1>";
                         echo "</div>";
                         $queryString = "SELECT * FROM MOVIES AS M"
                                       ." WHERE M.MOVIE_ID IN (SELECT MOVIE_ID"
@@ -129,8 +129,8 @@ function doSearch($link, $match, $searchString)
                 case "director":
 		{
                         echo "<div class=\"bigwords\">";
-                        echo "<h1>Showing results for movies directed by "
-                             .$searchString."...</h1>";
+                        echo "<h1>Showing results for movies directed by '"
+                             .$searchString."'...</h1>";
                         echo "</div>";
                         $queryString = "SELECT * FROM MOVIES AS M WHERE "
                                       ."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
@@ -142,8 +142,8 @@ function doSearch($link, $match, $searchString)
                 case "actor":
                 {
                         echo "<div class=\"bigwords\">";
-                        echo "<h1>Showing results for movies starring "
-                             .$searchString."...</h1>";
+                        echo "<h1>Showing results for movies starring '"
+                             .$searchString."'...</h1>";
                         echo "</div>";
                         $queryString = "SELECT * FROM MOVIES AS M WHERE "
                                       ."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
@@ -152,6 +152,71 @@ function doSearch($link, $match, $searchString)
                         $searchResult = $link->query($queryString);
                         return $searchResult;
                 }
+		case "language":
+		{
+			echo "<div class=\"bigwords\">";
+                        echo "<h1>Showing results for movies in '"
+                             .$searchString."'...</h1>";
+                        echo "</div>";
+                        $queryString = "SELECT * FROM MOVIES AS M WHERE "
+                                      ."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
+                                      ."LANGUAGES WHERE LANGUAGE LIKE '%"
+                                      .$searchString."%');";
+                        $searchResult = $link->query($queryString);
+                        return $searchResult;
+		}
+		case "producer":
+		{
+			echo "<div class=\"bigwords\">";
+                        echo "<h1>Showing results for movies produced by '"
+                             .$searchString."'...</h1>";
+                        echo "</div>";
+                        $queryString = "SELECT * FROM MOVIES AS M WHERE "
+                                      ."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
+                                      ."PRODUCER WHERE PRODUCER LIKE '%"
+                                      .$searchString."%');";
+                        $searchResult = $link->query($queryString);
+                        return $searchResult;
+		}
+		case "editor":
+		{
+			echo "<div class=\"bigwords\">";
+                        echo "<h1>Showing results for movies edited by '"
+                             .$searchString."'...</h1>";
+                        echo "</div>";
+                        $queryString = "SELECT * FROM MOVIES AS M WHERE "
+                                      ."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
+                                      ."EDITORS WHERE EDITOR LIKE '%"
+                                      .$searchString."%');";
+                        $searchResult = $link->query($queryString);
+                        return $searchResult;
+		}
+		case "screenwriter":
+		{
+			echo "<div class=\"bigwords\">";
+                        echo "<h1>Showing results for movies written by '"
+                             .$searchString."'...</h1>";
+                        echo "</div>";
+                        $queryString = "SELECT * FROM MOVIES AS M WHERE "
+                                      ."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
+                                      ."SCREENWRITER WHERE SCREENWRITER LIKE '%"
+                                      .$searchString."%');";
+                        $searchResult = $link->query($queryString);
+                        return $searchResult;
+		}
+		case "tag":
+		{
+			echo "<div class=\"bigwords\">";
+                        echo "<h1>Showing results for movies tagged with '"
+                             .$searchString."'...</h1>";
+                        echo "</div>";
+                        $queryString = "SELECT * FROM MOVIES AS M WHERE "
+                                      ."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
+                                      ."MOVIE_TAG WHERE TAG_TYPE LIKE '%"
+                                      .$searchString."%');";
+                        $searchResult = $link->query($queryString);
+                        return $searchResult;
+		}
                 default:
                 {
                         return;
