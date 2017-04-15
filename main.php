@@ -67,6 +67,7 @@
 	echo "\t\t</select>\n";
 	echo "\t\t<input type=\"text\" name=\"search\" size=\"50\"
 	      class=\"search\">\n";
+	echo "\t\t<input type=\"hidden\" name=\"sortBy\" value=\"nothing\">\n";
 	echo "\t\t<input type=\"submit\" value=\"Search\" class=\"search\">\n";
 	echo "\t</form>";
 	if ($_SESSION["manager"]) {

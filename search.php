@@ -34,8 +34,8 @@
 
 	$results = doSearch($link, $match, $searchString);
 
-/* FORM FOR SORTING RESULTS IF WE GET TIME TO IMPLEMENT IT
 
+/*
 	echo "<form action=\"search.php\" method=\"GET\">";
 	echo "<input type=\"hidden\" name=\"match\" value=\"".$match."\">";
 	echo "<input type=\"hidden\" name=\"search\" value=\""
@@ -53,12 +53,12 @@
 	echo "</select><br>";
 	echo "<input type=\"submit\" value=\"Sort Results\">";
 	echo "</form><br>";
-----------------------------------------------------------------------------*/
+*/
 	if ($_SESSION["manager"]) {
 		echo "<div class=\"info\"><a href=\"addmovie.php\">";
 		echo "Add a New Movie</a></div>";
 	}
-
+/*
 	if (mysqli_num_rows($results) > 0) {
 		while($row = mysqli_fetch_assoc($results)) {
 			echo "<div class=\"info\">";
@@ -78,7 +78,42 @@
 	} else {
 		echo "<h2 class=\"bigwords\">No results found!</h2>";
 	}
+*/
+	if (mysqli_num_rows($results) > 0) {
+		$movieArray = array();
+		
+		while ($row = mysqli_fetch_assoc($results)) {
+			array_push($movieArray, $row);
+		}
+/*
+		if ($_GET["sortBy"] == "title" || $_GET["sortBy"] == "release"
+		    || $_GET["sortBy"] == "duration") {
+			$sortBy = $_GET["sortBy"];
+			$sortOrder = $_GET["sortOrder"];
+			$movieArray = quicksort($movieArray, $sortBy, 
+						$sortOrder);
+		}
+*/
+		foreach ($movieArray as $key => $value) {
+			echo "<div class=\"info\">";
+                        echo "<h2>Title: <a href=\"movie.php?id="
+                             .$value["movie_id"]."\">".$value["title"]
+			     ."</a></h2><strong>Summary:</strong><br>"
+			     .$value["summary"]
+			     ."<br><br><strong>Release</strong>: "
+                             .$value["release_date"]."<br><strong>"
+                             ."Duration:</strong> ".$value["duration"]."<br>";
+                        if ($_SESSION["manager"]) {
+                                echo "<br><a href=\"editmovie.php?id="
+                                     .$value["movie_id"]."\">";
+                                echo "Edit Movie</a>";
+                        }
+                        echo "</div>";
+		}
 
+	} else {
+		echo "<h2 class=\"bigwords\">No results found!</h2>";
+	}
 
 	$link->close();
 
