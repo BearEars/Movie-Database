@@ -102,9 +102,11 @@
 
 <h1 class="bigwords">Edit Movie</h1>
 
-<div id="form">
+<div id="editform">
 <form action="updateMovie.php" method="POST">
 <?php
+
+	echo "<div class=\"editcolumn\">";
 	echo "<input type=\"hidden\" name=\"movieId\" value=\""
 	     .$_GET["id"]."\">";
 
@@ -133,6 +135,9 @@
 		}
 	}
         echo "<br><br>";
+
+	echo "</div>";
+	echo "<div class=\"editcolumn\">";
 
 	echo "Genre(s):<br>";
         for ($i = 0; $i < 3; $i++) {
@@ -179,6 +184,11 @@
 
         echo "<br><br>";
 
+	echo "<input type=\"submit\" value=\"Update Movie\">";
+
+	echo "</div>";
+	echo "<div class=\"editcolumn\">";
+
 	echo "Producer(s):<br>";
         for ($i = 0; $i < 3; $i++) {
                 if ($producers[$i] != "") {
@@ -210,14 +220,13 @@
                         echo "<input type=\"text\" name=\"edit".$i."\"><br>";
                 }
         }
-
+	echo "</div>";
         echo "<br><br>";
 ?>
 
-        <input type="submit" value="Update Movie">
-
 </form>
 </div>
+
 
 </body>
 </html>

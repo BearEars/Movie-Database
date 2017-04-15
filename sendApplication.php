@@ -1,9 +1,8 @@
 <html>
 <head>
-	<title>Manager Application</title>
+	<title>Sending Manager Application...</title>
 	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
-
 <body>
 
 <?php
@@ -25,16 +24,20 @@
         echo "</div>\n";
         echo "<div id=\"padding\"></div>";
 
-?>
+	$to = "taylor.ecton@gmail.com";
+	$from = $_POST["email"];
+	$subject = "Movie-Database Manager Application";
+	$message = $_POST["message"];
+	$headers = "From:".$from;
 
-	<form action="sendApplication.php" method="POST" class="info">
-		Email:<br>
-		<input type="text" name="email" placeholder="you@example.com">
-		<br><br>
-		Why should you be a manager on this site?<br>
-		<input type="text" name="message" style="width:350px"><br>
-		<input type="submit" value="Submit Application">
-	</form>
+	mail($to, $subject, $message, $headers);
+
+	echo "<div class=\"info\">";
+        echo "Application successfully submitted!<br>";
+        echo "<a href=\"main.php\">Return to Search</a>";
+        echo "</div>";
+
+?>
 
 </body>
 </html>

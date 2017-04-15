@@ -31,6 +31,7 @@
 	echo "<br><br><a href=\"myWatchlist.php\">My Watchlist</a>";
         echo "<br><a href=\"main.php\">Search</a></p>";
         echo "</div>";
+	echo "<div id=\"padding\"></div>";
 
 	$link = establishLink();
 	$rating = $_POST["rating"];
@@ -38,9 +39,10 @@
 	$movieId = $_POST["movie_id"];
 
 	addReview($link, $username, $rating, $review, $movieId);
+	echo "<div class=\"info\">";
 	echo "Review successfully added!<br>";
 	echo "<a href=\"main.php\">Return to Search</a>";
-
+	echo "</div>";
 ?>
 
 

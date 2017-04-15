@@ -24,7 +24,21 @@
 
         $link = establishLink();
 
-	
+	$movieId = $_POST["movieId"];
+	$title = $_POST["title"];
+	$summary = $_POST["summary"];
+	$release = $_POST["release"];
+	$duration = $_POST["duration"];
+
+	updateMovieTable($link, $_POST);
+	updateLanguageTable($link, $_POST);
+	updateGenreTable($link, $_POST);
+	updateTagTable($link, $_POST);
+	updateActorTable($link, $_POST);
+	updateDirectorTable($link, $_POST);
+	updateProducerTable($link, $_POST);
+	updateScreenwriterTable($link, $_POST);
+	updateEditorTable($link, $_POST);
 
 	echo "Movie successfully updated!<br>";
         echo "<a href=\"main.php\">Return to Search</a>";

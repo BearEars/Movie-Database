@@ -421,6 +421,111 @@ function addToWatchList($link, $username, $movieId)
 			.$movieId.");";
 	$link->query($queryString);
 }
+//-------------UPDATING THE DATABASE--------------------------------------
+function updateMovieTable($link, $post) {
+	$queryString = "UPDATE MOVIES SET title='".$post["title"]
+		."', summary='".$post["summary"]."', release_date='"
+		.$post["release"]."', duration='".$post["duration"]
+		."' WHERE movie_id = ".$post["movieId"].";";
+	$link->query($queryString);
+}
+
+function updateLanguageTable($link, $post) {
+	for ($i = 0; $i < 3; $i++) {
+		$key = "lang".$i;
+		if ($post[$key] != "") {
+			$queryString = "REPLACE INTO LANGUAGES VALUES ("
+				.$post["movieId"].", '".$post[$key]
+				."');";
+			$link->query($queryString);
+		}
+	}	
+}
+
+function updateGenreTable($link, $post) {
+	for ($i = 0; $i < 3; $i++) {
+                $key = "gen".$i;
+                if ($post[$key] != "") {
+                        $queryString = "REPLACE INTO MOVIE_GENRE VALUES ('"
+                                .$post[$key]."', ".$post["movieId"]
+                                .");";
+                        $link->query($queryString);
+                }
+        }  
+}
+
+function updateTagTable($link, $post) {
+	for ($i = 0; $i < 3; $i++) {
+                $key = "tag".$i;
+                if ($post[$key] != "") {
+                        $queryString = "REPLACE INTO MOVIE_TAG VALUES ('"
+                                .$post[$key]."', ".$post["movieId"]
+                                .");";
+                        $link->query($queryString);
+                }
+        }
+}
+
+function updateActorTable($link, $post) {
+	for ($i = 0; $i < 3; $i++) {
+                $key = "actor".$i;
+                if ($post[$key] != "") {
+                        $queryString = "REPLACE INTO ACTORS VALUES ("
+                                .$post["movieId"].", '".$post[$key]
+                                ."');";
+                        $link->query($queryString);
+                }
+        } 
+}
+
+function updateDirectorTable($link, $post) {
+	for ($i = 0; $i < 2; $i++) {
+                $key = "direc".$i;
+                if ($post[$key] != "") {
+                        $queryString = "REPLACE INTO DIRECTORS VALUES ("
+                                .$post["movieId"].", '".$post[$key]
+                                ."');";
+                        $link->query($queryString);
+                }
+        } 
+}
+
+function updateProducerTable($link, $post) {
+	for ($i = 0; $i < 3; $i++) {
+                $key = "prod".$i;
+                if ($post[$key] != "") {
+                        $queryString = "REPLACE INTO PRODUCER VALUES ("
+                                .$post["movieId"].", '".$post[$key]
+                                ."');";
+                        $link->query($queryString);
+                }
+        } 
+}
+
+function updateScreenwriterTable($link, $post) {
+	for ($i = 0; $i < 3; $i++) {
+                $key = "screen".$i;
+                if ($post[$key] != "") {
+                        $queryString = "REPLACE INTO SCREENWRITER VALUES ("
+                                .$post["movieId"].", '".$post[$key]
+                                ."');";
+                        $link->query($queryString);
+                }
+        } 
+}
+
+function updateEditorTable($link, $post) {
+	for ($i = 0; $i < 3; $i++) {
+                $key = "edit".$i;
+                if ($post[$key] != "") {
+                        $queryString = "REPLACE INTO EDITORS VALUES ("
+                                .$post["movieId"].", '".$post[$key]
+                                ."');";
+                        $link->query($queryString);
+                }
+        } 
+}
+
 //------------------SORTING-----------------------------------------------
 function quicksort($movieArray, $sortBy, $sortOrder)
 {
