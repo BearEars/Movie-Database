@@ -25,6 +25,7 @@ include 'movie_db_funcs.php';
 
         if ($_SESSION["manager"]) {
                 echo "You have manager privileges!<br>";
+		echo "<a href=\"addManagers.php\">Add Manager</a><br>";
         } else {
                 echo "Click <a href=\"managerApp.php\">here</a> to apply for"
                      ." manager privileges.<br>";

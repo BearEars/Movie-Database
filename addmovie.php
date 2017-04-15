@@ -15,6 +15,7 @@
 	echo "<div id=\"top\">";
         echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
         echo "You have manager privileges!<br>";
+	echo "<a href=\"addManagers.php\">Add Manager</a><br>";
         echo "\t<a href=\"logout.php\">Log Out</a>";
 	echo "<br><br><a href=\"myWatchlist.php\">My Watchlist</a>";
 	echo "<br><a href=\"main.php\">Search</a></p>";
