@@ -17,10 +17,14 @@
         echo "<div id=\"top\">";
         echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
         echo "You have manager privileges!<br>";
-        echo "\t<a href=\"logout.php\">Log Out</a></p>";
+        echo "\t<a href=\"logout.php\">Log Out</a>";
+	echo "<br><br><a href=\"myWatchlist.php\">My Watchlist</a>";
+        echo "<br><a href=\"main.php\">Search</a></p>";
         echo "</div>";
 
         $link = establishLink();
+
+	
 
 	echo "Movie successfully updated!<br>";
         echo "<a href=\"main.php\">Return to Search</a>";

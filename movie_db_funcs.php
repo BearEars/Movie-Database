@@ -285,6 +285,13 @@ function getFromRatingsTable($link, $movieId) {
         return $link->query($queryString);
 }
 
+function getFromWatchList($link, $username) {
+	$queryString = "SELECT * FROM MOVIES AS M WHERE "
+			."M.MOVIE_ID IN (SELECT MOVIE_ID FROM "
+			."WATCHLIST WHERE USERNAME = '".$username."');";
+	$searchResult = $link->query($queryString);
+	return $searchResult;
+}
 //--------------------INSERTING NEW MOVIE INFO--------------------------------
 function insertMovieTable($post, $link)
 {
@@ -406,6 +413,13 @@ function addReview($link, $username, $rating, $review, $movieId)
                        .$username."', ".$movieId.", "
                        .$rating.", '".$review."');";
         $link->query($queryString);
+}
+//-------------------ADD MOVIE TO WATCHLIST-----------------------------------
+function addToWatchList($link, $username, $movieId)
+{
+	$queryString = "INSERT INTO WATCHLIST VALUES('".$username."', "
+			.$movieId.");";
+	$link->query($queryString);
 }
 //------------------SORTING-----------------------------------------------
 function quicksort($movieArray, $sortBy, $sortOrder)

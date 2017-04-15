@@ -29,7 +29,9 @@
                      ." manager privileges.<br>";
         }
 
-	echo "\t<a href=\"logout.php\">Log Out</a></p>";
+	echo "\t<a href=\"logout.php\">Log Out</a>";
+	echo "<br><br><a href=\"myWatchlist.php\">My Watchlist</a>";
+        echo "<br><a href=\"main.php\">Search</a></p>";
 	echo "</div>";
 
 	$results = doSearch($link, $match, $searchString);
@@ -106,6 +108,13 @@
 			     ."<br><br><strong>Release</strong>: "
                              .$value["release_date"]."<br><strong>"
                              ."Duration:</strong> ".$value["duration"]."<br>";
+			echo "<br><form action=\"addToWatchlist.php\" "
+			     ."method=\"POST\">";
+			echo "<input type=\"hidden\" name=\"id\" value="
+			     .$value["movie_id"].">";
+			echo "<input type=\"submit\" value=\"Add to Watchlist"
+			     ."\">";
+			echo "</form>";
                         if ($_SESSION["manager"]) {
                                 echo "<br><a href=\"editmovie.php?id="
                                      .$value["movie_id"]."\">";

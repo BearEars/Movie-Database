@@ -20,7 +20,9 @@
                      ." manager privileges.<br>";
         }
 
-        echo "\t<a href=\"logout.php\">Log Out</a></p>";
+        echo "\t<a href=\"logout.php\">Log Out</a>";
+	echo "<br><br><a href=\"myWatchlist.php\">My Watchlist</a>";
+        echo "<br><a href=\"main.php\">Search</a></p>";
         echo "</div>";
 ?>
 

@@ -51,12 +51,20 @@
                      ." manager privileges.<br>";
         }
 
-        echo "\t<a href=\"logout.php\">Log Out</a></p>";
+        echo "\t<a href=\"logout.php\">Log Out</a>";
+	echo "<br><br><a href=\"myWatchlist.php\">My Watchlist</a>";
+        echo "<br><a href=\"main.php\">Search</a></p>";
 	echo "</div>";
 
 	echo "<h1 class=\"bigwords\">Title: ".$title."</h1>";
 
 	echo "<div class=\"info\">";
+
+	echo "<form action=\"addToWatchlist.php\" method=\"post\">";
+	echo "<input type=\"hidden\" name=\"id\" value=".$movieId.">";
+	echo "<input type=\"submit\" value=\"Add to Watchlist\">";
+	echo "</form>";
+
 	if ($_SESSION["manager"]) {
 		echo "<a href=\"editmovie.php?id=".$movieId."\">";
 		echo "Edit Movie</a><br><br>";
