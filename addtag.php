@@ -55,6 +55,7 @@
 			<input type="text" name="newtag">
 			<input type="button" value="Submit" name="tagsubmit">
 		</form>
+	</div>
 </body>
 </html>
  
