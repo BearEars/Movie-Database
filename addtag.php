@@ -1,7 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Add Tags</title>
+	<style type="text/css">
+		body{
+			background-color:lightslategrey;
+			font-family: Verdana, sans-serif;
+		}
+		#please{
+			right:500px;
+			position:absolute;
+			bottom: 450px;
+			color:#ffffff;
+			font-family: 'Raleway',sans-serif;
+			font-size:50px;
+			text-align: center;
+		}
+		#addtag{
+			position:absolute;
+			bottom:400px;
+			right:500px;
+			width:300px;
+		}
+
+	</style>
 </head>
 <body>
 <?php 
@@ -25,10 +47,14 @@
 	echo "\t<a href=\"logout.php\">Log Out</a></p>";
 	echo"</div>";
  ?>
+	<div id=please>
+ 	<p>Please enter your tag</p>
+ 	</div>
 	<div id=addtag>
-		<form method="POST">
+		<form action="submittag.php" method="POST">
 			<input type="text" name="newtag">
 			<input type="button" value="Submit" name="tagsubmit">
 		</form>
 </body>
+</html>
  
