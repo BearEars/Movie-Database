@@ -410,26 +410,26 @@ function addReview($link, $username, $rating, $review, $movieId)
 //------------------SORTING-----------------------------------------------
 function quicksort($movieArray, $sortBy, $sortOrder)
 {
-	if(count($array) < 2) {
-		return $array;
+	if(count($movieArray) < 2) {
+		return $movieArray;
 	}
 	$left = $right = array();
 	reset($movieArray);
 	$pivKey = key($movieArray);
 	$pivot = array_shift($movieArray);
 	if ($sortOrder == "ascending") {
-		foreach($array as $key => $value) {
+		foreach($movieArray as $key => $value) {
 			if ($value[$sortBy] < $pivot[$sortBy])
-				array_push($left, $value);
+				$left[$key] = $value;
 			else
-				array_push($right, $value);
+				$right[$key] = $value;
 		}
 	} else {
-		foreach($array as $key => $value) {
+		foreach($movieArray as $key => $value) {
                         if ($value[$sortBy] > $pivot[$sortBy])
-                                array_push($left, $value);
+                                $left[$key] = $value;
                         else
-                                array_push($right, $value);
+                                $right[$key] = $value;
 		}
 	}
 	return array_merge(quicksort($left, $sortBy, $sortOrder),

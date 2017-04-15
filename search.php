@@ -35,25 +35,27 @@
 	$results = doSearch($link, $match, $searchString);
 
 
-/*
+
 	echo "<form action=\"search.php\" method=\"GET\">";
 	echo "<input type=\"hidden\" name=\"match\" value=\"".$match."\">";
 	echo "<input type=\"hidden\" name=\"search\" value=\""
 	     .$searchString."\">";
 	echo "<div style=\"color:white\">Sort by:</div> ";
 	echo "<select name=\"sortBy\">";
+	echo "<option value=\"nothing\"></option>";
 	echo "<option value=\"title\">Title</option>";
-	echo "<option value=\"release\">Release Date</option>";
+	echo "<option value=\"release_date\">Release Date</option>";
 	echo "<option value=\"duration\">Duration</option>";
 	echo "</select>";
 	echo "    <div style=\"color:white\"> Order:</div> ";
 	echo "<select name=\"sortOrder\">";
+	echo "<option></option>";
 	echo "<option value=\"ascending\">Ascending</option>";
 	echo "<option value=\"descending\">Descending</option>";
 	echo "</select><br>";
 	echo "<input type=\"submit\" value=\"Sort Results\">";
 	echo "</form><br>";
-*/
+
 	if ($_SESSION["manager"]) {
 		echo "<div class=\"info\"><a href=\"addmovie.php\">";
 		echo "Add a New Movie</a></div>";
@@ -85,15 +87,16 @@
 		while ($row = mysqli_fetch_assoc($results)) {
 			array_push($movieArray, $row);
 		}
-/*
-		if ($_GET["sortBy"] == "title" || $_GET["sortBy"] == "release"
-		    || $_GET["sortBy"] == "duration") {
+
+		if ($_GET["sortBy"] == "title" 
+		   || $_GET["sortBy"] == "release_date"
+		   || $_GET["sortBy"] == "duration") {
 			$sortBy = $_GET["sortBy"];
 			$sortOrder = $_GET["sortOrder"];
 			$movieArray = quicksort($movieArray, $sortBy, 
 						$sortOrder);
 		}
-*/
+
 		foreach ($movieArray as $key => $value) {
 			echo "<div class=\"info\">";
                         echo "<h2>Title: <a href=\"movie.php?id="
