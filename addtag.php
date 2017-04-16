@@ -53,7 +53,7 @@
 	<div id=addtag>
 		<form action="submittag.php" method="POST">
 			<input type="text" name="newtag">
-			<input type="button" value="Submit" name="tagsubmit">
+			<input type="submit" value="submit" name="tagsubmit">
 		</form>
 	</div>
 </body>
