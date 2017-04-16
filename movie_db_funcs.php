@@ -421,6 +421,11 @@ function addToWatchList($link, $username, $movieId)
 			.$movieId.");";
 	$link->query($queryString);
 }
+//------------------ADD tags------------------------------
+function addTag($link,$movieId,$tag){
+    $queryString="INSERT INTO MOVIE_TAG VALUES('".$tag."',".$movieId.");";
+    $link ->query($queryString);
+}
 //-------------UPDATING THE DATABASE--------------------------------------
 function updateMovieTable($link, $post) {
 	$queryString = "UPDATE MOVIES SET title='".$post["title"]
