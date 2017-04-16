@@ -26,6 +26,8 @@
 	$link = establishLink();
 	$nonManagers = getNonManagers($link);
 
+	echo "<h2 class=\"bigwords\">Users who are not managers:</h2>";
+
 	if (mysqli_num_rows($nonManagers) > 0) {
                 echo "<div class=\"info\">";
 		echo "<form action=\"updateManagers.php\" method=\"POST\">";
