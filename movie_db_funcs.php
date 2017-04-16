@@ -555,5 +555,18 @@ function quicksort($movieArray, $sortBy, $sortOrder)
 			   array($pivKey => $pivot),
 			   quicksort($right, $sortBy, $sortOrder));
 }
+//------------------------ADDING MANAGER PRIVILEGES---------------------------
+function getNonManagers($link)
+{
+	$queryString = "SELECT * FROM USERS WHERE _manager = 0";
+	return $link->query($queryString);
+}
+
+function updatePrivileges($link, $username)
+{
+	$queryString = "UPDATE USERS SET _manager = 1 WHERE username = '"
+			.$username."';";
+	$link->query($queryString);
+}
 
 ?>
