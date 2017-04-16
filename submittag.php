@@ -32,7 +32,7 @@
     $tag=$_POST["tag_type"];
     $movieID = $_POST["movie_id"];
 
-    insertTags($link,$movieID,$tag);
+    addTag($link,$movieID,$tag);
     echo "Tags successfully added!<br>";
     echo "<a href=\"main.php\">Return to Search</a>";
 ?>
