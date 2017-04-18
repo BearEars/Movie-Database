@@ -131,7 +131,9 @@
 		if ($languages[$i] != "") {
 			echo "<input type=\"text\" name=\"lang".$i."\" "
 			    ."value=\"".$languages[$i]."\">";
-			echo "<a href=\"deletevalue.php?id=<br>";
+			echo "<a href=\"deletevalue.php?id=".$_GET["id"]
+			     ."&table=LANGUAGES&column=language"
+			     ."&value=".$languages[$i]."\">Delete</a><br>";
 		} else {
 			echo "<input type=\"text\" name=\"lang".$i."\"><br>";
 		}
@@ -145,7 +147,10 @@
         for ($i = 0; $i < 3; $i++) {
                 if ($genres[$i] != "") {
                         echo "<input type=\"text\" name=\"gen".$i."\" "
-                            ."value=\"".$genres[$i]."\"><br>";
+                            ."value=\"".$genres[$i]."\">";
+			echo "<a href=\"deletevalue.php?id=".$_GET["id"]
+                             ."&table=MOVIE_GENRE&column=genre_type"
+                             ."&value=".$genres[$i]."\">Delete</a><br>";
                 } else {
                         echo "<input type=\"text\" name=\"gen".$i."\"><br>";
                 }
@@ -156,7 +161,10 @@
         for ($i = 0; $i < 3; $i++) {
                 if ($tags[$i] != "") {
                         echo "<input type=\"text\" name=\"tag".$i."\" "
-                            ."value=\"".$tags[$i]."\"><br>";
+                            ."value=\"".$tags[$i]."\">";
+			echo "<a href=\"deletevalue.php?id=".$_GET["id"]
+                             ."&table=MOVIE_TAG&column=tag_type"
+                             ."&value=".$tags[$i]."\">Delete</a><br>";
                 } else {
                         echo "<input type=\"text\" name=\"tag".$i."\"><br>";
                 }
@@ -167,7 +175,10 @@
         for ($i = 0; $i < 3; $i++) {
                 if ($actors[$i] != "") {
                         echo "<input type=\"text\" name=\"actor".$i."\" "
-                            ."value=\"".$actors[$i]."\"><br>";
+                            ."value=\"".$actors[$i]."\">";
+			echo "<a href=\"deletevalue.php?id=".$_GET["id"]
+                             ."&table=ACTORS&column=actor"
+                             ."&value=".$actors[$i]."\">Delete</a><br>";
                 } else {
                         echo "<input type=\"text\" name=\"actor".$i."\"><br>";
                 }
@@ -178,7 +189,10 @@
         for ($i = 0; $i < 2; $i++) {
                 if ($directors[$i] != "") {
                         echo "<input type=\"text\" name=\"direc".$i."\" "
-                            ."value=\"".$directors[$i]."\"><br>";
+                            ."value=\"".$directors[$i]."\">";
+			echo "<a href=\"deletevalue.php?id=".$_GET["id"]
+                             ."&table=DIRECTORS&column=director"
+                             ."&value=".$directors[$i]."\">Delete</a><br>";
                 } else {
                         echo "<input type=\"text\" name=\"direc".$i."\"><br>";
                 }
@@ -195,7 +209,10 @@
         for ($i = 0; $i < 3; $i++) {
                 if ($producers[$i] != "") {
                         echo "<input type=\"text\" name=\"prod".$i."\" "
-                            ."value=\"".$producers[$i]."\"><br>";
+                            ."value=\"".$producers[$i]."\">";
+			echo "<a href=\"deletevalue.php?id=".$_GET["id"]
+                             ."&table=PRODUCER&column=producer"
+                             ."&value=".$producers[$i]."\">Delete</a><br>";
                 } else {
                         echo "<input type=\"text\" name=\"prod".$i."\"><br>";
                 }
@@ -206,7 +223,10 @@
         for ($i = 0; $i < 3; $i++) {
                 if ($screenwriters[$i] != "") {
                         echo "<input type=\"text\" name=\"screen".$i."\" "
-                            ."value=\"".$screenwriters[$i]."\"><br>";
+                            ."value=\"".$screenwriters[$i]."\">";
+			echo "<a href=\"deletevalue.php?id=".$_GET["id"]
+                             ."&table=SCREENWRITER&column=screenwriter"
+                             ."&value=".$screenwriters[$i]."\">Delete</a><br>";
                 } else {
                         echo "<input type=\"text\" name=\"screen".$i."\"><br>";
                 }
@@ -217,7 +237,10 @@
         for ($i = 0; $i < 3; $i++) {
                 if ($editors[$i] != "") {
                         echo "<input type=\"text\" name=\"edit".$i."\" "
-                            ."value=\"".$editors[$i]."\"><br>";
+                            ."value=\"".$editors[$i]."\">";
+			echo "<a href=\"deletevalue.php?id=".$_GET["id"]
+                             ."&table=EDITORS&column=editor"
+                             ."&value=".$editors[$i]."\">Delete</a><br>";
                 } else {
                         echo "<input type=\"text\" name=\"edit".$i."\"><br>";
                 }
