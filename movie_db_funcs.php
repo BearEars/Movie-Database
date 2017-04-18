@@ -617,10 +617,11 @@ function deleteMovie($link, $movieId)
 	$link->query($watchString);
 	$link->query($movieString);
 }
-
-function deleteValue($link, $movieId, $value, $table)
+function deleteValue($link, $movieId, $value, $table,$column)
 {
-	
+
+    $sql="DELETE FROM ".$table." WHERE movie_id=".$movieId." AND ".$column." =".$value.";";
+    $link->query($sql);
 }
 
 ?>
