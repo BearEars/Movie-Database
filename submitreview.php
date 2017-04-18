@@ -42,8 +42,10 @@
 	addReview($link, $username, $rating, $review, $movieId);
 	echo "<div class=\"info\">";
 	echo "Review successfully added!<br>";
-	echo "<a href=\"main.php\">Return to Search</a>";
 	echo "</div>";
+	header("Location: /~twecto2/CS405/Movie-Database/movie.php?id="
+		.$movieId);
+	exit;
 ?>
 
 

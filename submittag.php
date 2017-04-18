@@ -35,8 +35,10 @@
     addTag($link,$movieID,$tag);
     echo "<div class=\"info\">";
     echo "Tags successfully added!<br>";
-    echo "<a href=\"main.php\">Return to Search</a>";
     echo "</div>";
+	header("Location: /~twecto2/CS405/Movie-Database/movie.php?id="
+		.$movieID);
+	exit;
 ?>
 </body>
 </html>
