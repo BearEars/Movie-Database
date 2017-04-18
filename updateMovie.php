@@ -42,6 +42,7 @@
 	updateEditorTable($link, $_POST);
 
 	echo "Movie successfully updated!<br>";
-        echo "<a href=\"main.php\">Return to Search</a>";
+        header("Location: /~twecto2/CS405/Movie-Database/editmovie.php?id=".$movieId);
+	exit;
 
-
+?>

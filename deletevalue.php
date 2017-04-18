@@ -1,5 +1,5 @@
 <?php
-	include 'movie_db_funcs';
+	include 'movie_db_funcs.php';
 
 	session_start();
 
@@ -15,7 +15,7 @@
 	$value = $_GET["value"];
 
 	deleteValue($link, $movieId, $value, $table, $column);
-	header("Location: /~twecto2/CS405/Movie-Database/editmovie.php?id="
-		.$movieId);
+	header("Location: /~twecto2/CS405/Movie-Database/editmovie.php?id=".$movieId);
+	exit;
 
 ?>
