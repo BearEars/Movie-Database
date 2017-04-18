@@ -53,6 +53,8 @@
  	</div>
 	<div id=addtag>
 		<form action="submittag.php" method="POST">
+<?php echo "<input type=\"hidden\" name=\"movie_id\" value=".$_GET["movie_id"].">";
+?>
 			<input type="text" name="newtag">
 			<input type="submit" value="submit" name="tagsubmit">
 		</form>

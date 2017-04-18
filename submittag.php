@@ -29,7 +29,7 @@
         echo "\t<a href=\"logout.php\">Log Out</a></p>";
         echo "</div>";
     $link=establishLink();
-    $tag=$_POST["tag_type"];
+    $tag=$_POST["newtag"];
     $movieID = $_POST["movie_id"];
 
     addTag($link,$movieID,$tag);
