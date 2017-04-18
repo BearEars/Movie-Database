@@ -33,8 +33,10 @@
     $movieID = $_POST["movie_id"];
 
     addTag($link,$movieID,$tag);
+    echo "<div class=\"info\">";
     echo "Tags successfully added!<br>";
     echo "<a href=\"main.php\">Return to Search</a>";
+    echo "</div>";
 ?>
 </body>
 </html>
