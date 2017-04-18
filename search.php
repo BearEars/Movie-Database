@@ -101,10 +101,13 @@
 		}
 
 		foreach ($movieArray as $key => $value) {
+			$avgRating = getAverageRating($link, $value["movie_id"]);
+			$avgRating = round($avgRating, 1, PHP_ROUND_HALF_UP);
 			echo "<div class=\"info\">";
                         echo "<h2>Title: <a href=\"movie.php?id="
                              .$value["movie_id"]."\">".$value["title"]
-			     ."</a></h2><strong>Summary:</strong><br>"
+			     ."</a></h2><strong>Avg. Rating: ".$avgRating
+			     ."/10<br><br><strong>Summary:</strong><br>"
 			     .$value["summary"]
 			     ."<br><br><strong>Release</strong>: "
                              .$value["release_date"]."<br><strong>"
@@ -119,7 +122,10 @@
                         if ($_SESSION["manager"]) {
                                 echo "<br><a href=\"editmovie.php?id="
                                      .$value["movie_id"]."\">";
-                                echo "Edit Movie</a>";
+                                echo "Edit Movie</a><br>";
+				echo "<a href=\"deletemovie.php?id="
+				     .$value["movie_id"]."\">";
+				echo "Delete Movie</a>";
                         }
                         echo "</div>";
 		}

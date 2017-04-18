@@ -32,7 +32,7 @@ function fromHome($postVars) {
 function login($postVars, $link) {
         // log an existing user in; check username/password combo
         $username = $postVars["Username"];
-        $password = $postVars["Password"];
+        $password = hash('sha256', $postVars["Password"]);
 
         // construct query string for password
         $passQueryString = "SELECT * FROM USERS WHERE username = '"
@@ -79,7 +79,7 @@ function fromUserReg($postVars) {
 function registerUser($postVars, $link) {
         // Do the things to create a new user in database
         $username = $postVars["Username"];
-        $password = $postVars["Password"];
+        $password = hash('sha256', $postVars["Password"]);
         $fName = $postVars["Fname"];
         $mName = $postVars["Mname"];
         $lName = $postVars["Lname"];
@@ -291,6 +291,17 @@ function getFromWatchList($link, $username) {
 			."WATCHLIST WHERE USERNAME = '".$username."');";
 	$searchResult = $link->query($queryString);
 	return $searchResult;
+}
+
+function getAverageRating($link, $movieId) {
+	$queryString = "SELECT AVG(ratings) FROM RATINGS WHERE movie_id = "
+		.$movieId.";";
+
+	$result = $link->query($queryString);
+
+	$row = mysqli_fetch_assoc($result);
+
+	return $row["AVG(ratings)"];
 }
 //--------------------INSERTING NEW MOVIE INFO--------------------------------
 function insertMovieTable($post, $link)
@@ -573,5 +584,39 @@ function updatePrivileges($link, $username)
 			.$username."';";
 	$link->query($queryString);
 }
+//--------------------------DELETING THINGS----------------------------------
+function deleteMovie($link, $movieId)
+{
+	// Remove anything dependent on the movie_id, then delete
+	// from the movies table
+	$actorString = "DELETE FROM ACTORS WHERE movie_id = ".$movieId.";";
+	$directorString = "DELETE FROM DIRECTORS WHERE movie_id = ".$movieId
+			.";";
+	$editorString = "DELETE FROM EDITORS WHERE movie_id = ".$movieId.";";
+	$languageString = "DELETE FROM LANGUAGES WHERE movie_id = ".$movieId
+			.";";
+	$genreString = "DELETE FROM MOVIE_GENRE WHERE movie_id = ".$movieId
+			.";";
+	$tagString = "DELETE FROM MOVIE_TAG WHERE movie_id = ".$movieId.";";
+	$producerString = "DELETE FROM PRODUCER WHERE movie_id = ".$movieId.";";
+	$ratingsString = "DELETE FROM RATINGS WHERE movie_id = ".$movieId.";";
+	$writerString = "DELETE FROM SCREENWRITER WHERE movie_id = "
+			.$movieId.";";
+	$watchString = "DELETE FROM WATCHLIST WHERE movie_id = ".$movieId.";";
+	$movieString = "DELETE FROM MOVIES WHERE movie_id = ".$movieId.";";
+
+	$link->query($actorString);
+	$link->query($directorString);
+	$link->query($editorString);
+	$link->query($languagesString);
+	$link->query($genreString);
+	$link->query($tagString);
+	$link->query($producerString);
+	$link->query($ratingsString);
+	$link->query($writerString);
+	$link->query($watchString);
+	$link->query($movieString);
+}
+
 
 ?>

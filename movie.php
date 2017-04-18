@@ -9,7 +9,7 @@
 	session_start();
 	if(!isset($_SESSION["username"])) {
 		header("Location: /~twecto2/CS405/Movie-Database/home.html");
-                exit;
+               exit;
 	}
 	if(!isset($_GET["id"]) || $_GET["id"] == "") {
 		echo "<div id=\"top\">";
@@ -40,6 +40,7 @@
 	$fromProducerTable = getFromProducerTable($link, $movieId);
 
 	$fromRatingsTable = getFromRatingsTable($link, $movieId);
+	$avgRating = getAverageRating($link, $movieId);
 
 	echo "<div id=\"top\">";
 	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
@@ -58,7 +59,9 @@
 	echo "</div>";
 
 	echo "<h1 class=\"bigwords\">Title: ".$title."</h1>";
-
+	echo "<h2 class=\"bigwords\">Average Rating: ".round($avgRating, 1,
+		PHP_ROUND_HALF_UP)."/10</h2>";
+	
 	echo "<div class=\"info\">";
 
 	echo "<form action=\"addToWatchlist.php\" method=\"post\">";
@@ -68,7 +71,9 @@
 
 	if ($_SESSION["manager"]) {
 		echo "<a href=\"editmovie.php?id=".$movieId."\">";
-		echo "Edit Movie</a><br><br>";
+		echo "Edit Movie</a><br>";
+		echo "<a href=\"deletemovie.php?id=".$movieId."\">";
+                echo "Delete Movie</a><br><br>";
 	}
 	echo "<strong>Summary:</strong><br>".$summary."<br><br>";
 	echo "<strong>Release Date:</strong> ".$release."<br>";
