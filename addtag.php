@@ -35,6 +35,7 @@
 	if(!isset($_GET['movie_id'])){
 		echo "Invalid movie";
 	}
+	$username=$_SESSION["username"];
 	echo"<div id=\"top\">";
 	echo "\t<p style=\"font-size:75%\">Logged in as: ".$username."<br>";
 
