@@ -130,7 +130,8 @@
 	for ($i = 0; $i < 3; $i++) {
 		if ($languages[$i] != "") {
 			echo "<input type=\"text\" name=\"lang".$i."\" "
-			    ."value=\"".$languages[$i]."\"><br>";
+			    ."value=\"".$languages[$i]."\">";
+			echo "<a href=\"deletevalue.php?id=<br>";
 		} else {
 			echo "<input type=\"text\" name=\"lang".$i."\"><br>";
 		}

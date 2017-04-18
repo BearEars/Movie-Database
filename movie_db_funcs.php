@@ -618,5 +618,9 @@ function deleteMovie($link, $movieId)
 	$link->query($movieString);
 }
 
+function deleteValue($link, $movieId, $value, $table)
+{
+	
+}
 
 ?>
